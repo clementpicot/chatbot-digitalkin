@@ -12,14 +12,14 @@ import { Label } from "@/components/ui/label";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const handleSubmit = async () => {
     "use server";
 
-    // This part would actually handle all the login logic through server action
+    // This part would actually handle all the sign up logic through server action
     // but for the purpose of the test I just redirect the user to the dashboard page
 
     // We could also use different providers such as Google, Facebook, etc. But because
@@ -33,9 +33,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">Sign up</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Create your account by entering your email and password below
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -52,15 +52,7 @@ export function LoginForm({
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -68,14 +60,23 @@ export function LoginForm({
                   required
                 />
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Repeat password</Label>
+                <Input
+                  id="repeat-password"
+                  type="password"
+                  defaultValue="digitalkin"
+                  required
+                />
+              </div>
               <Button type="submit" className="w-full">
-                Login
+                Sign up
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&ap;t have an account?{" "}
-              <Link href="/sign-up" className="underline underline-offset-4">
-                Sign up
+              Already have an account?{" "}
+              <Link href="/login" className="underline underline-offset-4">
+                Login
               </Link>
             </div>
           </form>
