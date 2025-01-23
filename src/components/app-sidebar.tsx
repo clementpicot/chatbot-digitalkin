@@ -2,7 +2,6 @@
 
 import {
   BookOpen,
-  Bot,
   Bug,
   HelpCircle,
   Settings,
@@ -13,8 +12,7 @@ import * as React from "react";
 
 import Logo from "@/components/layout/logo";
 import LogoIcon from "@/components/layout/logo-icon";
-import { NavMain } from "@/components/nav-main";
-import { NavSupport } from "@/components/nav-support";
+import { NavSectionSidebar } from "@/components/nav-section-sidebar";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -39,49 +37,8 @@ const data = {
       url: "#",
       icon: SquareTerminal,
     },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      isParent: true,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
+  ],
+  kins: [
     {
       title: "Settings",
       url: "#",
@@ -108,22 +65,22 @@ const data = {
   ],
   support: [
     {
-      name: "Help",
+      title: "Help",
       url: "#",
       icon: HelpCircle,
     },
     {
-      name: "Report a bug",
+      title: "Report a bug",
       url: "#",
       icon: Bug,
     },
     {
-      name: "Documentation",
+      title: "Documentation",
       url: "#",
-      icon: BookOpen
+      icon: BookOpen,
     },
     {
-      name: "Settings",
+      title: "Settings",
       url: "#",
       icon: Settings,
     },
@@ -141,8 +98,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="tutorial-2">
         <DialogChat />
-        <NavMain items={data.navMain} />
-        <NavSupport support={data.support} />
+        <NavSectionSidebar items={data.navMain} />
+        <NavSectionSidebar items={data.kins} title="Kins" />
+        <NavSectionSidebar items={data.support} title="Support" />
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter>

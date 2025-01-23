@@ -19,29 +19,30 @@ import {
 } from "@/components/ui/sidebar";
 import { Fragment } from "react";
 
-export function NavMain({
+export function NavSectionSidebar({
   items,
+  title,
 }: {
   items: {
     title: string;
     url: string;
     icon?: LucideIcon;
     isActive?: boolean;
-    isParent?: boolean;
     items?: {
       title: string;
       url: string;
     }[];
   }[];
+  title?: string;
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Kins</SidebarGroupLabel>
+      {title && <SidebarGroupLabel>{title}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => {
           return (
             <Fragment key={item.title}>
-              {item.isParent && (
+              {item.items?.length && item.items?.length > 0 && (
                 <Collapsible
                   asChild
                   defaultOpen={item.isActive}
@@ -71,7 +72,7 @@ export function NavMain({
                   </SidebarMenuItem>
                 </Collapsible>
               )}
-              {!item.isParent && (
+              {!item.items && (
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
