@@ -1,6 +1,7 @@
 "use client";
 
 import TutorialTooltip from "@/components/ui/tutorial-tooltip";
+import { useTheme } from "next-themes";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Joyride, { Step, CallBackProps } from "react-joyride";
 
@@ -18,6 +19,7 @@ export default function TutorialProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const { theme } = useTheme();
   const [run, setRun] = useState(false);
 
   const steps: Step[] = [
@@ -45,9 +47,14 @@ export default function TutorialProvider({
     setRun(true);
   };
 
-  // Update the localstorage item when user completed or skipped tutorial
+  // Update the localstorage item when user completed, skipped or closed tutorial
   const handleCallback = (data: CallBackProps) => {
-    if (data.status === "finished" || data.status === "skipped") {
+    console.log(data);
+    if (
+      data.status === "finished" ||
+      data.status === "skipped" ||
+      data.action === "close"
+    ) {
       setRun(false);
       localStorage.setItem("tutorialCompleted", "true");
     }
@@ -71,8 +78,18 @@ export default function TutorialProvider({
         callback={handleCallback}
         tooltipComponent={TutorialTooltip}
         styles={{
+          beacon: {
+            transform: "translate(-50%, -50%)",
+            left: "auto",
+          },
+          beaconInner: {
+            backgroundColor: theme === "light" ? "#441fa3" : "white",
+            opacity: 1,
+          },
+          beaconOuter: {
+            borderColor: theme === "light" ? "#441fa3" : "white",
+          },
           options: {
-            zIndex: 10000,
             arrowColor: "transparent",
             primaryColor: `hsl(${getComputedStyle(
               document.documentElement

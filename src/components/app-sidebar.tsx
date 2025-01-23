@@ -1,27 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
 import {
   BookOpen,
   Bot,
-  Frame,
-  Map,
-  PieChart,
+  Bug,
+  HelpCircle,
+  Settings,
   Settings2,
-  SquareTerminal,
-} from "lucide-react"
+  SquareTerminal
+} from "lucide-react";
+import * as React from "react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
+import Logo from "@/components/layout/logo";
+import LogoIcon from "@/components/layout/logo-icon";
+import { NavMain } from "@/components/nav-main";
+import { NavSupport } from "@/components/nav-support";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import Logo from "@/components/layout/logo"
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import DialogChat from "./layout/dialog-chat";
 
 // This is sample data.
 const data = {
@@ -32,29 +35,15 @@ const data = {
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Dashboard",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
       title: "Models",
       url: "#",
       icon: Bot,
+      isParent: true,
       items: [
         {
           title: "Genesis",
@@ -117,39 +106,48 @@ const data = {
       ],
     },
   ],
-  projects: [
+  support: [
     {
-      name: "Design Engineering",
+      name: "Help",
       url: "#",
-      icon: Frame,
+      icon: HelpCircle,
     },
     {
-      name: "Sales & Marketing",
+      name: "Report a bug",
       url: "#",
-      icon: PieChart,
+      icon: Bug,
     },
     {
-      name: "Travel",
+      name: "Documentation",
       url: "#",
-      icon: Map,
+      icon: BookOpen
+    },
+    {
+      name: "Settings",
+      url: "#",
+      icon: Settings,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <Logo className="max-w-32 w-full mt-2" />
+      <SidebarHeader className="mt-2">
+        <Link href="/dashboard">
+          <Logo className="max-w-32 w-full group-data-[collapsible=icon]:hidden" />
+          <LogoIcon className="hidden group-data-[collapsible=icon]:block" />
+        </Link>
       </SidebarHeader>
       <SidebarContent className="tutorial-2">
+        <DialogChat />
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavSupport support={data.support} />
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
