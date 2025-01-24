@@ -34,61 +34,67 @@ export default function Chatbot({
     .find(({ sender }) => sender === "agent");
 
   return (
-    <ScrollArea
-      ref={scrollAreaRef}
-      className={cn(
-        "flex-1 pr-6",
-        messages.length === 0 &&
-          "flex [&>div]:flex [&>div>div]:flex-1 [&>div>div]:relative"
-      )}
-    >
+    <>
       {messages.length === 0 && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-full flex flex-col items-center justify-center text-muted-foreground max-w-lg mx-auto text-center">
           <LogoIcon className="opacity-50 size-12" />
+          <h2 className="text-xl mt-4">Start a new chat with your Kin</h2>
+          <p className="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae quae nobis dolorem eligendi laboriosam aperiam, officia aliquam adipisci. Dolor, obcaecati?</p>
         </div>
       )}
-      <div className="flex flex-col">
-        {messages.map(({ id, message, date, sender }) => {
-          const formattedTime = formatTime(date);
-          const isLastAgentMessage = id === lastAgentMessage?.id;
+      {messages.length > 0 && (
+        <ScrollArea
+          ref={scrollAreaRef}
+          className={cn(
+            "flex-1 pr-6",
+            messages.length === 0 &&
+              "flex"
+          )}
+        >
+          <div className="flex flex-col">
+            {messages.map(({ id, message, date, sender }) => {
+              const formattedTime = formatTime(date);
+              const isLastAgentMessage = id === lastAgentMessage?.id;
 
-          return (
-            <div
-              className={cn(
-                "p-2 mb-4 rounded-lg",
-                sender === "user"
-                  ? "max-w-[500px] bg-primary/85 text-background self-end px-4"
-                  : "text-foreground"
-              )}
-              key={id}
-            >
-              <div className="flex gap-2">
-                {sender === "agent" && (
-                  <Avatar className="size-6 border border-muted-foreground/50 bg-background p-1">
-                    <LogoIcon className="" />
-                  </Avatar>
-                )}
-                <div className="whitespace-pre-wrap">
-                  {isTyping && sender === "agent" && isLastAgentMessage ? (
-                    <TypingEffect
-                      text={message}
-                      speed={TYPING_SPEED}
-                      onComplete={() => {}}
-                    />
-                  ) : (
-                    message
+              return (
+                <div
+                  className={cn(
+                    "p-2 mb-4 rounded-lg",
+                    sender === "user"
+                      ? "max-w-[500px] bg-primary/85 text-background self-end px-4"
+                      : "text-foreground"
+                  )}
+                  key={id}
+                >
+                  <div className="flex gap-2">
+                    {sender === "agent" && (
+                      <Avatar className="size-6 border border-muted-foreground/50 bg-background p-1">
+                        <LogoIcon className="" />
+                      </Avatar>
+                    )}
+                    <div className="whitespace-pre-wrap">
+                      {isTyping && sender === "agent" && isLastAgentMessage ? (
+                        <TypingEffect
+                          text={message}
+                          speed={TYPING_SPEED}
+                          onComplete={() => {}}
+                        />
+                      ) : (
+                        message
+                      )}
+                    </div>
+                  </div>
+                  {sender === "user" && (
+                    <span className="block text-xs font-bold mt-2 text-right">
+                      {formattedTime}
+                    </span>
                   )}
                 </div>
-              </div>
-              {sender === "user" && (
-                <span className="block text-xs font-bold mt-2 text-right">
-                  {formattedTime}
-                </span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </ScrollArea>
+              );
+            })}
+          </div>
+        </ScrollArea>
+      )}
+    </>
   );
 }

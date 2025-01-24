@@ -8,6 +8,7 @@ import { Textarea } from "../ui/textarea";
 import TooltipButton from "../ui/tooltip-button";
 import { Message } from "./chatbot-interface";
 import { TYPING_SPEED } from "@/lib/utils";
+import { Input } from "../ui/input";
 
 const keywordResponses: Record<string, string> = {
   merge:
@@ -63,7 +64,7 @@ export default function ChatbotInput({
     const simulateTyping = () => {
       setTimeout(() => {
         setIsTyping(false);
-      }, agentResponse.length * TYPING_SPEED);
+      }, agentResponse.length * (TYPING_SPEED + 5));
     };
 
     simulateTyping();
@@ -93,7 +94,7 @@ export default function ChatbotInput({
 
     // If none of the keywords match, we simply return an "error" message.
     // In a real context, the agent would answer back to the user with
-    // real data/information, but I didn't want to take too much time 
+    // real data/information, but I didn't want to take too much time
     // implementing this feature and allocate more time on User Experience
     return "I apologize, but I'm not sure how to help with your request.";
   }
@@ -133,7 +134,15 @@ export default function ChatbotInput({
             <TooltipButton
               variant="ghost"
               size="icon"
-              buttonContent={<Plus />}
+              buttonContent={
+                <>
+                  <Input
+                    type="file"
+                    className="absolute inset-0 z-50 opacity-0"
+                  />
+                  <Plus />
+                </>
+              }
               tooltip="Add files"
             />
           </div>

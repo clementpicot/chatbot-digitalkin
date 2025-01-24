@@ -26,7 +26,7 @@ export default function TooltipButton({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger className="relative" asChild>
           <Button variant={variant} size={size} {...delegated}>
             {buttonContent}
           </Button>
