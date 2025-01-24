@@ -1,101 +1,104 @@
 "use client";
 
-import TutorialTooltip from "@/components/ui/tutorial-tooltip";
-import { useTheme } from "next-themes";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import Joyride, { Step, CallBackProps } from "react-joyride";
+import { driver, Driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import React, { createContext, useContext, useEffect, useRef } from "react";
 
 type TutorialContextType = {
   startTutorial: () => void;
   steps: Step[];
 };
 
+type Step = {
+  element: string;
+  popover: {
+    title: string;
+    content: string;
+  };
+};
+
 const TutorialContext = createContext<TutorialContextType | undefined>(
   undefined
 );
+
+const steps: Step[] = [
+  {
+    element: ".tutorial-1",
+    popover: {
+      title: "Your profile",
+      content:
+        "This little section is useful if you want to manage your account settings, refill your Kin's thoughts, or switch the current application theme!",
+    },
+  },
+  {
+    element: ".tutorial-2",
+    popover: {
+      title: "Application sidebar",
+      content:
+        "The sidebar allows you to navigate through the entire application services! You can manage your existing chats, start a new chat, or create a new Kin to fit your needs!",
+    },
+  },
+  {
+    element: ".tutorial-3",
+    popover: {
+      title: "Our chatbot",
+      content:
+        "This is where the magic happens. Start asking anything related to any topic to your Kin, and he will answer back to you with the information you need. 🤖",
+    },
+  },
+];
 
 export default function TutorialProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { theme } = useTheme();
-  const [run, setRun] = useState(false);
-
-  const steps: Step[] = [
-    {
-      target: ".tutorial-1",
-      title: "Your profile",
-      content:
-        "This little section is usefull if you want to manage your account settings, refill your Kin's thougths or switch the current application theme!",
-    },
-    {
-      target: ".tutorial-2",
-      title: "Application sidebar",
-      content:
-        "The sidebar allows you to navigate through the entire application services! You can manage your existing chats, start a new chat, or create a new Kin to fit your needs!",
-    },
-    {
-      target: ".tutorial-3",
-      title: "Our chatbot",
-      content:
-        "This is where the magic happens. Start asking anything related to any topic to your Kin, and he will answer back to you with the informations you need. 🤖",
-    },
-  ];
+  const driverRef = useRef<Driver | null>(null);
 
   const startTutorial = () => {
-    setRun(true);
-  };
-
-  // Update the localstorage item when user completed, skipped or closed tutorial
-  const handleCallback = (data: CallBackProps) => {
-    if (
-      data.status === "finished" ||
-      data.status === "skipped" ||
-      data.action === "close"
-    ) {
-      setRun(false);
-      localStorage.setItem("tutorialCompleted", "true");
+    if (driverRef.current) {
+      driverRef.current.drive();
     }
   };
 
-  // On component mount check if tutorial has been completed, otherwise run the tutorial
-  useEffect(() => {
-    if (localStorage.getItem("tutorialCompleted") === "true") return;
+  driverRef.current = driver({
+    showProgress: true,
+    animate: true,
+    overlayOpacity: 0.75,
+    stagePadding: 10,
+    allowClose: true,
+    doneBtnText: "Finish",
+    nextBtnText: "Next",
+    prevBtnText: "Back",
+    popoverClass: 'popover',
+    onDestroyed: () => {
+      // Mark tutorial as completed when closed or finished
+      // then destroy it (cleanup)
+      localStorage.setItem("tutorialCompleted", "true");
+      driverRef.current?.destroy();
+    },
+  });
 
-    setRun(true);
+  driverRef.current.setSteps(
+    steps.map((step) => ({
+      element: step.element,
+      popover: {
+        title: step.popover.title,
+        description: step.popover.content,
+      },
+    }))
+  );
+
+  useEffect(() => {
+    // Start the tutorial on mount if not completed
+    if (localStorage.getItem("tutorialCompleted") !== "true") {
+      startTutorial();
+    }
   }, []);
 
   return (
     <TutorialContext.Provider value={{ startTutorial, steps }}>
       {children}
-      <Joyride
-        steps={steps}
-        run={run}
-        continuous
-        showSkipButton
-        callback={handleCallback}
-        tooltipComponent={TutorialTooltip}
-        styles={{
-          beacon: {
-            transform: "translate(-50%, -50%)",
-            left: "auto",
-          },
-          beaconInner: {
-            backgroundColor: theme === "light" ? "#441fa3" : "white",
-            opacity: 1,
-          },
-          beaconOuter: {
-            borderColor: theme === "light" ? "#441fa3" : "white",
-          },
-          options: {
-            arrowColor: "transparent",
-            primaryColor: `hsl(${getComputedStyle(
-              document.documentElement
-            ).getPropertyValue("--foreground")})`,
-          },
-        }}
-      />
     </TutorialContext.Provider>
   );
 }
