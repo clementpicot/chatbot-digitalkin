@@ -5,8 +5,7 @@ import {
   Bug,
   HelpCircle,
   Settings,
-  Settings2,
-  SquareTerminal
+  SquareTerminal,
 } from "lucide-react";
 import * as React from "react";
 
@@ -21,73 +20,50 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { useKin } from "@/providers/kin-provider";
 import Link from "next/link";
 import DialogChat from "./layout/dialog-chat";
 
-// This is sample data.
-const data = {
-  user: {
-    name: "Juliette Costa",
-    email: "j.costa@mycompany.com",
-    avatar: "/avatars/avatar.svg",
-  },
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "#",
-      icon: SquareTerminal,
-    },
-  ],
-  kins: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  support: [
-    {
-      title: "Help",
-      url: "#",
-      icon: HelpCircle,
-    },
-    {
-      title: "Report a bug",
-      url: "#",
-      icon: Bug,
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings,
-    },
-  ],
-};
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { kins } = useKin();
+
+  const data = {
+    user: {
+      name: "Juliette Costa",
+      email: "j.costa@mycompany.com",
+      avatar: "/avatars/avatar.svg",
+    },
+    navMain: [
+      {
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: SquareTerminal,
+      },
+    ],
+    support: [
+      {
+        title: "Help",
+        url: "#",
+        icon: HelpCircle,
+      },
+      {
+        title: "Report a bug",
+        url: "#",
+        icon: Bug,
+      },
+      {
+        title: "Documentation",
+        url: "#",
+        icon: BookOpen,
+      },
+      {
+        title: "Settings",
+        url: "#",
+        icon: Settings,
+      },
+    ],
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="mt-2">
@@ -99,7 +75,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="tutorial-2">
         <DialogChat />
         <NavSectionSidebar items={data.navMain} />
-        <NavSectionSidebar items={data.kins} title="Kins" />
+        <NavSectionSidebar
+          items={kins}
+          prefixUrl="/dashboard/kins/"
+          title="Kins"
+          hasAddButton={{
+            url: "/dashboard/kins/create",
+            tooltip: "Add a new Kin",
+          }}
+        />
         <NavSectionSidebar items={data.support} title="Support" />
       </SidebarContent>
       <SidebarRail />

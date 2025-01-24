@@ -17,8 +17,6 @@ export default function Layout({
   breadcrumbs: React.ReactNode;
 }>) {
 
-  console.log(breadcrumbs)
-
   return (
     <TutorialProvider>
       <KinProvider>

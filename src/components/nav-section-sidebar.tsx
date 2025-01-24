@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight, Plus, type LucideIcon } from "lucide-react";
 
 import {
   Collapsible,
@@ -17,11 +17,16 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 import { Fragment } from "react";
+import TooltipButton from "./ui/tooltip-button";
+import { redirect } from "next/navigation";
 
 export function NavSectionSidebar({
   items,
   title,
+  prefixUrl,
+  hasAddButton,
 }: {
   items: {
     title: string;
@@ -34,12 +39,34 @@ export function NavSectionSidebar({
     }[];
   }[];
   title?: string;
+  prefixUrl?: string;
+  hasAddButton?: {
+    url: string;
+    tooltip: string;
+  };
 }) {
   return (
     <SidebarGroup>
-      {title && <SidebarGroupLabel>{title}</SidebarGroupLabel>}
+      {title && (
+        <SidebarGroupLabel className="pr-0 text-sm flex items-center justify-between">
+          {title}{" "}
+          {hasAddButton && (
+            <TooltipButton
+              variant="ghost"
+              size="icon"
+              buttonContent={<Plus />}
+              tooltip={hasAddButton.tooltip}
+              onClick={() => {
+                redirect(hasAddButton.url);
+              }}
+            />
+          )}
+        </SidebarGroupLabel>
+      )}
       <SidebarMenu>
         {items.map((item) => {
+          const href = prefixUrl ? prefixUrl + item.url : item.url;
+
           return (
             <Fragment key={item.title}>
               {item.items?.length && item.items?.length > 0 && (
@@ -52,7 +79,9 @@ export function NavSectionSidebar({
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton tooltip={item.title}>
                         {item.icon && <item.icon />}
-                        <span>{item.title}</span>
+                        <span>
+                          <Link href={href}>{item.title}</Link>
+                        </span>
                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
@@ -75,10 +104,10 @@ export function NavSectionSidebar({
               {!item.items && (
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={href}>
                       {item.icon && <item.icon />}
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               )}

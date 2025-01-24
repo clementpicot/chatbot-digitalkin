@@ -49,7 +49,6 @@ export default function TutorialProvider({
 
   // Update the localstorage item when user completed, skipped or closed tutorial
   const handleCallback = (data: CallBackProps) => {
-    console.log(data);
     if (
       data.status === "finished" ||
       data.status === "skipped" ||

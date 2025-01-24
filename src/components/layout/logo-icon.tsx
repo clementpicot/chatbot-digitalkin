@@ -4,19 +4,17 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import React from "react";
 
-export default function LogoIcon({ className }: { className: string }) {
+export default function LogoIcon({ className }: { className?: string }) {
   const { theme } = useTheme();
 
   const logoColor = theme === "light" ? "fill-black" : "fill-white";
 
   return (
     <svg
-      width="32"
-      height="32"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(`${logoColor} ${className}`)}
+      className={cn(`w-full h-full ${logoColor} ${className}`)}
     >
       <path d="M15.4334 32.0023C15.2511 31.6139 15.0608 31.2325 15.0183 30.8353C14.97 30.3826 15.4359 30.0108 15.9341 30.0022C16.6546 29.9897 17.003 30.2094 16.9831 30.7839C16.97 31.1656 16.7853 31.5415 16.7143 31.9611C16.331 32.0023 15.9108 32.0023 15.4334 32.0023Z" />
       <path d="M16.6939 0C16.8345 0.410774 16.979 0.82051 16.986 1.23258C16.9954 1.78273 16.6573 2.00333 15.9805 2.00014C15.4721 1.99775 15.0572 1.64597 14.9962 1.21116C14.9298 0.736809 15.1039 0.378005 15.4124 0.0388588C15.7963 0 16.2165 0 16.6939 0Z" />

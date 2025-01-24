@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type Kin = {
   id: number;
@@ -13,6 +13,7 @@ type Kin = {
 
 type KinContextType = {
   kins: Kin[];
+  handleAddKin: () => void;
 };
 
 const KinContext = createContext<KinContextType | undefined>(undefined);
@@ -22,7 +23,8 @@ export default function KinProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const kins: Kin[] = [
+
+  const dummyKins: Kin[] = [
     {
       id: 1,
       title: "R&D",
@@ -38,12 +40,33 @@ export default function KinProvider({
       description:
         "Take over time-consuming tasks such as low-value-added accounting production for finance professionals.",
       remainingTokens: 59517,
-      url: 'daf',
+      url: "daf",
       maxTokens: 100000,
     },
   ];
 
-  return <KinContext.Provider value={{ kins }}>{children}</KinContext.Provider>;
+  const [kins, setKins] = useState(dummyKins)
+
+
+  // In a real project I'd use server actions to get and
+  // process formData, then send it to the database
+  function handleAddKin() {
+    setKins(prevState => [...prevState, {
+      id: 3,
+      title: "HR",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus deserunt rerum nesciunt qui iure.",
+      remainingTokens: 59517,
+      url: "hr",
+      maxTokens: 100000,
+    }])
+  }
+
+  return (
+    <KinContext.Provider value={{ kins, handleAddKin }}>
+      {children}
+    </KinContext.Provider>
+  );
 }
 
 export const useKin = (): KinContextType => {

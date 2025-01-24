@@ -7,7 +7,5 @@ export default async function BreadcrumbSlot({
 }) {
   const catchAll = (await params).catchAll;
 
-  console.log(catchAll);
-
   return <Breadcrumbs routes={catchAll} />;
 }

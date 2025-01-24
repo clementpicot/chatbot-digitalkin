@@ -20,7 +20,7 @@ export default function DialogChat() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex gap-2 font-bold mt-4 max-w-[calc(100%-1rem)] w-full mx-auto">
+        <Button className="flex gap-2 font-bold my-4 max-w-[calc(100%-1rem)] w-full mx-auto">
           <MessageCirclePlus />{" "}
           <span className="group-data-[collapsible=icon]:hidden">
             Start a new chat
@@ -41,7 +41,7 @@ export default function DialogChat() {
         <div className="grid sm:grid-cols-2 items-center gap-4">
           {kins.map((kin) => (
             <div
-              className="flex flex-col p-4 border-2 border-border rounded-lg col-span-1"
+              className="flex flex-col p-4 border-2 border-border hover:border-foreground transition-all duration-75 rounded-lg col-span-1"
               key={kin.id}
             >
               <h2 className="text-xl font-bold">Kin {kin.title}</h2>
@@ -63,9 +63,13 @@ export default function DialogChat() {
           </span>
         </div>
         <div className="flex justify-center">
-          <Button className="flex gap-2 w-full">
-            <Bot /> Create and configure a new Kin
-          </Button>
+          <DialogClose asChild>
+            <Button className="flex gap-2 w-full" asChild>
+              <Link href="/dashboard/kins/create">
+                <Bot /> Create and configure a new Kin
+              </Link>
+            </Button>
+          </DialogClose>
         </div>
       </DialogContent>
     </Dialog>
