@@ -11,7 +11,7 @@ export type Message = {
   sender: "user" | "agent";
 };
 
-export default function ChatbotInterface({ slug }: { slug: string }) {
+export default function ChatbotInterface({  }: { slug: string }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -19,7 +19,11 @@ export default function ChatbotInterface({ slug }: { slug: string }) {
     <>
       <Chatbot messages={messages} isTyping={isTyping} />
 
-      <ChatbotInput messages={messages} setMessages={setMessages} setIsTyping={setIsTyping} />
+      <ChatbotInput
+        messages={messages}
+        setMessages={setMessages}
+        setIsTyping={setIsTyping}
+      />
     </>
   );
 }
