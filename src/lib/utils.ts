@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export const TYPING_SPEED = 10;
+export const SERVER_LATENCY = 1000;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

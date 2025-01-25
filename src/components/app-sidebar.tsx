@@ -69,7 +69,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className="mt-2">
         <Link href="/dashboard">
           <Logo className="max-w-32 w-full group-data-[collapsible=icon]:hidden" />
-          <LogoIcon className="hidden group-data-[collapsible=icon]:block" />
+          <LogoIcon className="hidden group-data-[collapsible=icon]:block size-8" />
         </Link>
       </SidebarHeader>
       <SidebarContent className="tutorial-2">

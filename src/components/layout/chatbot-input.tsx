@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import TooltipButton from "../ui/tooltip-button";
 import { Message } from "./chatbot-interface";
-import { TYPING_SPEED } from "@/lib/utils";
+import { SERVER_LATENCY, TYPING_SPEED } from "@/lib/utils";
 import { Input } from "../ui/input";
 
 const keywordResponses: Record<string, string> = {
@@ -64,7 +64,7 @@ export default function ChatbotInput({
     const simulateTyping = () => {
       setTimeout(() => {
         setIsTyping(false);
-      }, agentResponse.length * (TYPING_SPEED + 5));
+      }, agentResponse.length * (TYPING_SPEED + 5) + SERVER_LATENCY);
     };
 
     simulateTyping();
