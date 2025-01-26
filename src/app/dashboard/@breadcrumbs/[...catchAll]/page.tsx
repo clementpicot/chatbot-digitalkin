@@ -1,11 +1,13 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
-export default async function BreadcrumbSlot({
-  params,
-}: {
-  params: Promise<{ catchAll: string[] }>;
-}) {
-  const catchAll = (await params).catchAll;
+export default function BreadcrumbSlot() {
+  const pathname = usePathname();
 
-  return <Breadcrumbs routes={catchAll} />;
+  // Split the pathname into segments and filter out empty strings
+  const routes = pathname.split("/").filter(Boolean);
+
+  return <Breadcrumbs routes={routes} />;
 }

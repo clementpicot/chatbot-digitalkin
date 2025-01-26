@@ -36,6 +36,7 @@ export default function ChatbotInput({
   const [userInput, setUserInput] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+
   const addMessage = (message: string) => {
     if (!message.trim()) return;
 
@@ -66,8 +67,9 @@ export default function ChatbotInput({
         setIsTyping(false);
       }, agentResponse.length * (TYPING_SPEED + 5) + SERVER_LATENCY);
     };
-
     simulateTyping();
+
+    // Reset user input value + height
     setUserInput("");
 
     if (textareaRef.current) {
@@ -92,9 +94,9 @@ export default function ChatbotInput({
       }
     }
 
-    // If none of the keywords match, we simply return an "error" message.
+    // If none of the keyword matches, we simply return an "error" message.
     // In a real context, the agent would answer back to the user with
-    // real data/information, but I didn't want to take too much time
+    // precise data/information, but I didn't want to take too much time
     // implementing this feature and allocate more time on User Experience
     return "I apologize, but I'm not sure how to help with your request.";
   }

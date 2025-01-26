@@ -73,43 +73,47 @@ export default function Chatbot({
               const isLastAgentMessage = id === lastAgentMessage?.id;
 
               return (
-                <div
-                  className={cn(
-                    "p-2 mb-4 rounded-lg",
-                    sender === "user"
-                      ? "max-w-[500px] bg-primary/85 text-background self-end px-4"
-                      : "text-foreground"
-                  )}
-                  key={id}
-                >
-                  <div className="flex gap-2">
-                    {sender === "agent" && (
-                      <Avatar className="size-6 border border-muted-foreground/50 bg-background p-1">
-                        <LogoIcon className="" />
-                      </Avatar>
+                <div className={cn("mb-4", sender === "user" && "self-end")} key={id}>
+                  <div
+                    className={cn(
+                      "p-2 mb-2 rounded-lg",
+                      sender === "user"
+                        ? "max-w-[500px] bg-primary/85 text-background px-4"
+                        : "text-foreground"
                     )}
-                    <div className="whitespace-pre-wrap self-center">
-                      {isTyping && sender === "agent" && isLastAgentMessage ? (
-                        showTypingIndicator ? (
-                          <TypingEffect
-                            text={message}
-                            speed={TYPING_SPEED}
-                            onComplete={() => {}}
-                          />
-                        ) : (
-                          <div className="typing-indicator">
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                          </div>
-                        )
-                      ) : (
-                        message
+                    key={id}
+                  >
+                    <div className="flex gap-2">
+                      {sender === "agent" && (
+                        <Avatar className="size-6 border border-muted-foreground/50 bg-background p-1">
+                          <LogoIcon className="" />
+                        </Avatar>
                       )}
+                      <div className="whitespace-pre-wrap self-center">
+                        {isTyping &&
+                        sender === "agent" &&
+                        isLastAgentMessage ? (
+                          showTypingIndicator ? (
+                            <TypingEffect
+                              text={message}
+                              speed={TYPING_SPEED}
+                              onComplete={() => {}}
+                            />
+                          ) : (
+                            <div className="typing-indicator">
+                              <div className="dot"></div>
+                              <div className="dot"></div>
+                              <div className="dot"></div>
+                            </div>
+                          )
+                        ) : (
+                          message
+                        )}
+                      </div>
                     </div>
                   </div>
                   {sender === "user" && (
-                    <span className="block text-xs font-bold mt-2 text-right">
+                    <span className="block text-xs font-bold text-right">
                       {formattedTime}
                     </span>
                   )}

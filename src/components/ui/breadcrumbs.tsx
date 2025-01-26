@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-
+import React from "react";
+import Link from "next/link";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,41 +10,44 @@ import {
 } from "@/components/ui/breadcrumb";
 
 export function Breadcrumbs({ routes = [] }: { routes: string[] }) {
-  let fullHref: string | undefined = undefined;
-  const breadcrumbItems: ReactElement[] = [];
-  let breadcrumbPage: ReactElement = <></>;
-
-  for (let i = 0; i < routes.length; i++) {
-    const route = routes[i];
-    const href: string = fullHref ? `${fullHref}/${route}` : `/${route}`;
-    fullHref = href;
-
-    if (i === routes.length - 1) {
-      breadcrumbPage = (
-        <BreadcrumbItem>
-          <BreadcrumbPage className="capitalize">{route}</BreadcrumbPage>
-        </BreadcrumbItem>
-      );
-    } else {
-      breadcrumbItems.push(
-        <React.Fragment key={href}>
-          {routes[i] !== "dashboard" && <BreadcrumbSeparator />}
-          <BreadcrumbItem>
-            <BreadcrumbLink href={href} className="capitalize">
-              {route}
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </React.Fragment>
-      );
-    }
-  }
-
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {breadcrumbItems}
-        <BreadcrumbSeparator />
-        {breadcrumbPage}
+        {/* Only show the "Dashboard" link if it's not already in the routes */}
+        {!routes.includes("dashboard") && (
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard" asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        )}
+
+        {/* Render the rest of the breadcrumbs */}
+        {routes.map((route, index) => {
+          const href = `/${routes.slice(0, index + 1).join("/")}`;
+          const isLast = index === routes.length - 1;
+
+          route = route.replace("-", " ");
+
+          return (
+            <React.Fragment key={href}>
+              {route !== "dashboard" && <BreadcrumbSeparator />}
+              <BreadcrumbItem>
+                {isLast ? (
+                  <BreadcrumbPage className="capitalize">
+                    {route}
+                  </BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink href={href} asChild>
+                    <Link href={href} className="capitalize">
+                      {route}
+                    </Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
+          );
+        })}
       </BreadcrumbList>
     </Breadcrumb>
   );
