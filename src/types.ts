@@ -16,6 +16,20 @@ export type KinContextType = {
   handleAddKin: () => void;
 };
 
+export type TutorialContextType = {
+  startTutorial: () => void;
+  steps: Step[];
+};
+
+export type Step = {
+  element: string;
+  popover: {
+    title: string;
+    content: string;
+  };
+};
+
+
 export interface DismissibleAlertProps {
   content: string;
   variant?: AlertVariant;

@@ -3,6 +3,7 @@
 import {
   BookOpenText,
   ChevronsUpDown,
+  Languages,
   LogOut,
   MoonIcon,
   Settings,
@@ -29,6 +30,7 @@ import {
 import { useTutorial } from "@/providers/tutorial-provider";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import LanguageSwitcher from "./layout/language-switcher";
 
 export function NavUser({
   user,
@@ -99,6 +101,9 @@ export function NavUser({
               >
                 {theme === "light" ? <SunIcon /> : <MoonIcon />}
                 Switch theme
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Languages /> <LanguageSwitcher />
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/settings">

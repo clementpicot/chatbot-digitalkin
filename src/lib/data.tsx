@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { FileTableData, FileType, HistoryTableData, User } from "@/types";
+import { FileTableData, FileType, HistoryTableData, Step, User } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import {
   ChevronRight,
@@ -63,6 +63,33 @@ export const fileType: FileType[] = [
   { type: "jpg", icon: Image },
   { type: "png", icon: Image },
   { type: "txt", icon: FileText },
+];
+
+export const steps: Step[] = [
+  {
+    element: ".tutorial-1",
+    popover: {
+      title: "Your profile",
+      content:
+        "This little section is useful if you want to manage your account settings, refill your Kin's thoughts, or switch the current application theme!",
+    },
+  },
+  {
+    element: ".tutorial-2",
+    popover: {
+      title: "Application sidebar",
+      content:
+        "The sidebar allows you to navigate through the entire application services! You can manage your existing chats, start a new chat, or create a new Kin to fit your needs!",
+    },
+  },
+  {
+    element: ".tutorial-3",
+    popover: {
+      title: "Our chatbot",
+      content:
+        "This is where the magic happens. Start asking anything related to any topic to your Kin, and he will answer back to you with the information you need. 🤖",
+    },
+  },
 ];
 
 //
