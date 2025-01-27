@@ -70,7 +70,7 @@ export default function TutorialProvider({
     doneBtnText: "Finish",
     nextBtnText: "Next",
     prevBtnText: "Back",
-    popoverClass: 'popover',
+    popoverClass: "popover",
     onDestroyed: () => {
       // Mark tutorial as completed when closed or finished
       // then destroy it (cleanup)

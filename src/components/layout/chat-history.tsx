@@ -1,8 +1,7 @@
 import { MessageCirclePlus } from "lucide-react";
 import Link from "next/link";
-import React from "react";
-import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
+import { ScrollArea } from "../ui/scroll-area";
 
 export default function ChatHistory({
   slug,

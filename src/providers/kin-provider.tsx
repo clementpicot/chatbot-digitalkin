@@ -1,6 +1,6 @@
 "use client";
 
-import { KinContextType, Kin } from "@/types";
+import { Kin, KinContextType } from "@/types";
 import React, { createContext, useContext, useState } from "react";
 
 const KinContext = createContext<KinContextType | undefined>(undefined);

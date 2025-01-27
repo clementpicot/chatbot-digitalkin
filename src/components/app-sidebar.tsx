@@ -8,7 +8,7 @@ import {
   FolderPlus,
   HelpCircle,
   Settings,
-  SquareTerminal
+  SquareTerminal,
 } from "lucide-react";
 import * as React from "react";
 
@@ -25,8 +25,8 @@ import {
 } from "@/components/ui/sidebar";
 import { useKin } from "@/providers/kin-provider";
 import Link from "next/link";
-import DialogChat from "./layout/dialog-chat";
 import BugReportDialog from "./layout/bug-report-dialog";
+import DialogChat from "./layout/dialog-chat";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { kins } = useKin();
@@ -51,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           {
             title: "New folder",
             url: "",
-            icon: FolderPlus
+            icon: FolderPlus,
           },
           {
             title: "New document",
@@ -71,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Report a bug",
         url: "#",
         icon: Bug,
-        triggerDialog: BugReportDialog
+        triggerDialog: BugReportDialog,
       },
       {
         title: "Documentation",

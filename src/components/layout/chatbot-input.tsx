@@ -1,14 +1,14 @@
 "use client";
 
+import { SERVER_LATENCY, TYPING_SPEED } from "@/lib/utils";
 import { ArrowUp, Plus } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import TooltipButton from "../ui/tooltip-button";
 import { Message } from "./chatbot-interface";
-import { SERVER_LATENCY, TYPING_SPEED } from "@/lib/utils";
-import { Input } from "../ui/input";
 
 const keywordResponses: Record<string, string> = {
   merge:
@@ -35,7 +35,6 @@ export default function ChatbotInput({
 }) {
   const [userInput, setUserInput] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
 
   const addMessage = (message: string) => {
     if (!message.trim()) return;

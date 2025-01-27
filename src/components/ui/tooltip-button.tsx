@@ -8,8 +8,8 @@ import {
   TooltipTrigger,
 } from "./tooltip";
 
-type VariantType = ButtonProps["variant"]
-type SizeType = ButtonProps["size"]
+type VariantType = ButtonProps["variant"];
+type SizeType = ButtonProps["size"];
 
 export default function TooltipButton({
   variant,

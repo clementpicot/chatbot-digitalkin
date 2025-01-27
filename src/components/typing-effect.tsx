@@ -3,7 +3,7 @@
 
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 interface TypingEffectProps {
   text: string;
@@ -11,18 +11,18 @@ interface TypingEffectProps {
   speed?: number;
 }
 
-const TypingEffect: React.FC<TypingEffectProps> = ({ 
-  text, 
-  onComplete = () => {}, 
-  speed = 50 
+const TypingEffect: React.FC<TypingEffectProps> = ({
+  text,
+  onComplete = () => {},
+  speed = 50,
 }) => {
   const [characters, setCharacters] = useState<string[]>([]);
 
   // Optimized typing mechanism
   const typeText = useCallback(() => {
     // Ensure we start with an array of the correct length, filled with empty strings
-    const initialCharacters = new Array(text.length).fill('');
-    
+    const initialCharacters = new Array(text.length).fill("");
+
     // Track the current index outside of state updates to ensure accuracy
     let currentIndex = 0;
 
@@ -30,7 +30,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       if (currentIndex < text.length) {
         // Create a new array for each update to trigger re-render
         const newCharacters = [...initialCharacters];
-        
+
         // Fill characters up to the current index
         for (let i = 0; i <= currentIndex; i++) {
           newCharacters[i] = text[i];
@@ -59,20 +59,20 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
 
   return (
     <span>
-      {characters.map((char, index) => (
-        char !== '' ? (
-          <span 
-            key={index} 
+      {characters.map((char, index) =>
+        char !== "" ? (
+          <span
+            key={index}
             className="animate-fade opacity-0 inline-block"
-            style={{ 
+            style={{
               animationDelay: `${index * 0.001}s`,
-              animationFillMode: 'forwards' 
+              animationFillMode: "forwards",
             }}
           >
             {char}
           </span>
         ) : null
-      ))}
+      )}
     </span>
   );
 };

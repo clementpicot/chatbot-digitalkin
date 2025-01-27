@@ -1,22 +1,23 @@
 "use client";
 
 import { cn, formatTime, SERVER_LATENCY, TYPING_SPEED } from "@/lib/utils";
+import {} from "@/providers/kin-provider";
+import { useEffect, useRef, useState } from "react";
+import TypingEffect from "../typing-effect";
 import { Avatar } from "../ui/avatar";
+import { ScrollArea } from "../ui/scroll-area";
 import { Message } from "./chatbot-interface";
 import LogoIcon from "./logo-icon";
-import { useEffect, useRef, useState } from "react";
-import { ScrollArea } from "../ui/scroll-area";
-import TypingEffect from "../typing-effect";
-import { Kin } from "@/providers/kin-provider";
+import { Kin } from "@/types";
 
 export default function Chatbot({
   messages,
   isTyping,
-  kin
+  kin,
 }: {
   messages: Message[];
   isTyping: boolean;
-  kin: Kin[]
+  kin: Kin[];
 }) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [showTypingIndicator, setShowTypingIndicator] = useState(false);
@@ -57,10 +58,10 @@ export default function Chatbot({
       {messages.length === 0 && (
         <div className="h-full flex flex-col items-center justify-center text-muted-foreground max-w-lg mx-auto text-center">
           <LogoIcon className="opacity-50 size-12" />
-          <h2 className="text-xl mt-4">Start a new chat with your Kin {kin[0].title}</h2>
-          <p className="mt-2">
-            {kin[0].description}
-          </p>
+          <h2 className="text-xl mt-4">
+            Start a new chat with your Kin {kin[0].title}
+          </h2>
+          <p className="mt-2">{kin[0].description}</p>
         </div>
       )}
       {messages.length > 0 && (
@@ -74,7 +75,10 @@ export default function Chatbot({
               const isLastAgentMessage = id === lastAgentMessage?.id;
 
               return (
-                <div className={cn("mb-4", sender === "user" && "self-end")} key={id}>
+                <div
+                  className={cn("mb-4", sender === "user" && "self-end")}
+                  key={id}
+                >
                   <div
                     className={cn(
                       "p-2 mb-2 rounded-lg",

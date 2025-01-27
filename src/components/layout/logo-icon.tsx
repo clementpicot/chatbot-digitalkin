@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import React from "react";
 
 export default function LogoIcon({ className }: { className?: string }) {
   const { theme } = useTheme();

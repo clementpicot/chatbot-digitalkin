@@ -88,7 +88,15 @@ export default function BugReportDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <span className="flex items-center gap-2 p-2" onClick={() => setOpen(!open)}><Bug width={16} /> <span className="group-data-[collapsible=icon]:hidden">Report a bug</span></span>
+      <span
+        className="flex items-center gap-2 p-2"
+        onClick={() => setOpen(!open)}
+      >
+        <Bug width={16} />{" "}
+        <span className="group-data-[collapsible=icon]:hidden">
+          Report a bug
+        </span>
+      </span>
       <DialogContent className="sm:max-w-[600px]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

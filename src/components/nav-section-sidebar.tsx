@@ -70,7 +70,6 @@ export function NavSectionSidebar({
           const href = prefixUrl ? prefixUrl + item.url : item.url;
 
           if (item.triggerDialog) {
-
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton className="p-0">

@@ -26,8 +26,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useTheme } from "next-themes";
 import { useTutorial } from "@/providers/tutorial-provider";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 export function NavUser({
@@ -41,7 +41,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
   const { theme, setTheme } = useTheme();
-  const {startTutorial} = useTutorial()
+  const { startTutorial } = useTutorial();
 
   return (
     <SidebarMenu className="tutorial-1">
@@ -101,7 +101,9 @@ export function NavUser({
                 Switch theme
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/settings"><Settings /> Settings</Link>
+                <Link href="/dashboard/settings">
+                  <Settings /> Settings
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
