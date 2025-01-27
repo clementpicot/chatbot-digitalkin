@@ -286,7 +286,7 @@ export const chatHistoryColumns: ColumnDef<HistoryTableData>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <div>
           <Button variant="ghost" size="icon" asChild>

@@ -5,7 +5,6 @@ import { ChevronRight, Plus } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { DataTable } from "../ui/data-table";
 
 export default function KinWidget() {
   const { kins } = useKin();
