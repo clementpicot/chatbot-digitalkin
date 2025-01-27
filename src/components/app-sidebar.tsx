@@ -26,6 +26,7 @@ import {
 import { useKin } from "@/providers/kin-provider";
 import Link from "next/link";
 import DialogChat from "./layout/dialog-chat";
+import BugReportDialog from "./layout/bug-report-dialog";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { kins } = useKin();
@@ -70,6 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Report a bug",
         url: "#",
         icon: Bug,
+        triggerDialog: BugReportDialog
       },
       {
         title: "Documentation",
@@ -78,7 +80,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         title: "Settings",
-        url: "#",
+        url: "/dashboard/settings",
         icon: Settings,
       },
     ],
@@ -101,7 +103,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           title="Kins"
           hasAddButton={{
             url: "/dashboard/kins/create",
-            tooltip: "Add a new Kin",
+            tooltip: "Create a new Kin",
           }}
         />
         <NavSectionSidebar items={data.support} title="Support" />

@@ -7,13 +7,16 @@ import LogoIcon from "./logo-icon";
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import TypingEffect from "../typing-effect";
+import { Kin } from "@/providers/kin-provider";
 
 export default function Chatbot({
   messages,
   isTyping,
+  kin
 }: {
   messages: Message[];
   isTyping: boolean;
+  kin: Kin[]
 }) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [showTypingIndicator, setShowTypingIndicator] = useState(false);
@@ -54,11 +57,9 @@ export default function Chatbot({
       {messages.length === 0 && (
         <div className="h-full flex flex-col items-center justify-center text-muted-foreground max-w-lg mx-auto text-center">
           <LogoIcon className="opacity-50 size-12" />
-          <h2 className="text-xl mt-4">Start a new chat with your Kin</h2>
+          <h2 className="text-xl mt-4">Start a new chat with your Kin {kin[0].title}</h2>
           <p className="mt-2">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repudiandae quae nobis dolorem eligendi laboriosam aperiam, officia
-            aliquam adipisci. Dolor, obcaecati?
+            {kin[0].description}
           </p>
         </div>
       )}

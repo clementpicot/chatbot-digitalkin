@@ -15,7 +15,7 @@ const keywordResponses: Record<string, string> = {
     "I can help you merge multiple files into a single file. Please provide the files you want to merge.",
   create: "What type of file would you like me to create?",
   translate:
-    "I'm ready to help you translate a file. Please specify the file and the target language.I'm ready to help you translate a file. Please specify the file and the target language.I'm ready to help you translate a file. Please specify the file and the target language.",
+    "I'm ready to help you translate a file. Please specify the file and the target language.",
 };
 
 const badges: string[] = [

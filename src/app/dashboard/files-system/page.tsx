@@ -9,13 +9,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { fileSystemColumns, fileSystemData } from "@/lib/data";
 import {
   FileText,
   FolderClosed,
+  Grid2X2,
+  ImageIcon,
   MoreHorizontal,
   Plus,
-  Text,
-  Trash,
+  Trash
 } from "lucide-react";
 import Link from "next/link";
 
@@ -57,141 +59,107 @@ export default function Page() {
               <div className="flex items-center gap-3">
                 <div>
                   <div className="bg-muted-foreground/20 rounded-md p-1 size-8">
-                    <Text strokeWidth={1.5} width={16} className="mx-auto" />
+                    <Grid2X2 strokeWidth={1.5} width={16} className="mx-auto" />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-sm">File name</p>
+                  <p className="font-bold text-sm">User export (database)</p>
                   <div className="text-xs text-muted-foreground space-x-4 mt-1">
-                    <span>138 KB</span>
-                    <span>pdf</span>
+                    <span>10.3 MB</span>
+                    <span>xlsx</span>
                   </div>
                 </div>
               </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <MoreHorizontal />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Copy file name</DropdownMenuItem>
-                  <DropdownMenuItem>View file</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600">
-                    <Trash /> Delete file
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <FileOptions />
             </div>
             <div className="flex items-center justify-between border py-2 px-4 rounded-lg">
               <div className="flex items-center gap-3">
                 <div>
                   <div className="bg-muted-foreground/20 rounded-md p-1 size-8">
-                    <Text strokeWidth={1.5} width={16} className="mx-auto" />
+                    <FileText strokeWidth={1.5} width={16} className="mx-auto" />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-sm">File name</p>
+                  <p className="font-bold text-sm">Interview customer</p>
                   <div className="text-xs text-muted-foreground space-x-4 mt-1">
-                    <span>138 KB</span>
-                    <span>pdf</span>
+                    <span>2.4 MB</span>
+                    <span>docx</span>
                   </div>
                 </div>
               </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <MoreHorizontal />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Copy file name</DropdownMenuItem>
-                  <DropdownMenuItem>View file</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600">
-                    <Trash /> Delete file
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <FileOptions />
             </div>
             <div className="flex items-center justify-between border py-2 px-4 rounded-lg">
               <div className="flex items-center gap-3">
                 <div>
                   <div className="bg-muted-foreground/20 rounded-md p-1 size-8">
-                    <Text strokeWidth={1.5} width={16} className="mx-auto" />
+                    <FileText
+                      strokeWidth={1.5}
+                      width={16}
+                      className="mx-auto"
+                    />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-sm">File name</p>
+                  <p className="font-bold text-sm">Scientific paper</p>
                   <div className="text-xs text-muted-foreground space-x-4 mt-1">
-                    <span>138 KB</span>
+                    <span>963 KB</span>
                     <span>pdf</span>
                   </div>
                 </div>
               </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <MoreHorizontal />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Copy file name</DropdownMenuItem>
-                  <DropdownMenuItem>View file</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600">
-                    <Trash /> Delete file
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <FileOptions />
             </div>
             <div className="flex items-center justify-between border py-2 px-4 rounded-lg">
               <div className="flex items-center gap-3">
                 <div>
                   <div className="bg-muted-foreground/20 rounded-md p-1 size-8">
-                    <Text strokeWidth={1.5} width={16} className="mx-auto" />
+                    <ImageIcon
+                      strokeWidth={1.5}
+                      width={16}
+                      className="mx-auto"
+                    />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-sm">File name</p>
+                  <p className="font-bold text-sm">PageSpeed Score</p>
                   <div className="text-xs text-muted-foreground space-x-4 mt-1">
-                    <span>138 KB</span>
-                    <span>pdf</span>
+                    <span>432 KB</span>
+                    <span>jpg</span>
                   </div>
                 </div>
               </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <MoreHorizontal />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Copy file name</DropdownMenuItem>
-                  <DropdownMenuItem>View file</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600">
-                    <Trash /> Delete file
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <FileOptions />
             </div>
           </div>
         </div>
       </div>
       <div className="mt-8">
         <h2 className="text-xl font-semibold">All files</h2>
-        <DataTable />
+        <DataTable columns={fileSystemColumns} data={fileSystemData} />
       </div>
     </Cell>
+  );
+}
+
+function FileOptions() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-8 w-8 p-0">
+          <span className="sr-only">Open menu</span>
+          <MoreHorizontal />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuItem>Copy file name</DropdownMenuItem>
+        <DropdownMenuItem>View file</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="text-red-600">
+          <Trash /> Delete file
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

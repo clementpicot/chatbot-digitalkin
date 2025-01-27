@@ -18,9 +18,9 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Fragment } from "react";
 import TooltipButton from "./ui/tooltip-button";
-import { redirect } from "next/navigation";
 
 export function NavSectionSidebar({
   items,
@@ -33,10 +33,11 @@ export function NavSectionSidebar({
     url: string;
     icon?: LucideIcon;
     isActive?: boolean;
+    triggerDialog?: React.ElementType;
     items?: {
       title: string;
       url: string;
-      icon?: LucideIcon
+      icon?: LucideIcon;
     }[];
   }[];
   title?: string;
@@ -68,6 +69,17 @@ export function NavSectionSidebar({
         {items.map((item) => {
           const href = prefixUrl ? prefixUrl + item.url : item.url;
 
+          if (item.triggerDialog) {
+
+            return (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton className="p-0">
+                  <item.triggerDialog />
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          }
+
           return (
             <Fragment key={item.title}>
               {item.items?.length && item.items?.length > 0 && (
@@ -88,16 +100,18 @@ export function NavSectionSidebar({
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
-                              <Link href={subItem.url}>
-                                {subItem.icon && <subItem.icon />}
-                                <span>{subItem.title}</span>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
+                        {item.items?.map((subItem) => {
+                          return (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild>
+                                <Link href={subItem.url}>
+                                  {subItem.icon && <subItem.icon />}
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>

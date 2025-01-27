@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useTheme } from "next-themes";
 import { useTutorial } from "@/providers/tutorial-provider";
+import Link from "next/link";
 
 export function NavUser({
   user,
@@ -99,9 +100,8 @@ export function NavUser({
                 {theme === "light" ? <SunIcon /> : <MoonIcon />}
                 Switch theme
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings />
-                Settings
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/settings"><Settings /> Settings</Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
