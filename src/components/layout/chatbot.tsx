@@ -9,6 +9,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Message } from "./chatbot-interface";
 import LogoIcon from "./logo-icon";
 import { Kin } from "@/types";
+import { useTranslations } from "next-intl";
 
 export default function Chatbot({
   messages,
@@ -21,6 +22,7 @@ export default function Chatbot({
 }) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [showTypingIndicator, setShowTypingIndicator] = useState(false);
+  const t = useTranslations()
 
   // Auto scroll to bottom of ScrollView when there
   // is a new message to ensure user visibility
@@ -59,9 +61,9 @@ export default function Chatbot({
         <div className="h-full flex flex-col items-center justify-center text-muted-foreground max-w-lg mx-auto text-center">
           <LogoIcon className="opacity-50 size-12" />
           <h2 className="text-xl mt-4">
-            Start a new chat with your Kin {kin[0].title}
+            {t('kins.chat.title', {name: kin[0].title})}
           </h2>
-          <p className="mt-2">{kin[0].description}</p>
+          <p className="mt-2">{t('kins.description', {description: kin[0].description})}</p>
         </div>
       )}
       {messages.length > 0 && (

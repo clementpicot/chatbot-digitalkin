@@ -27,9 +27,11 @@ import { useKin } from "@/providers/kin-provider";
 import Link from "next/link";
 import BugReportDialog from "./layout/bug-report-dialog";
 import DialogChat from "./layout/dialog-chat";
+import { useTranslations } from "next-intl";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { kins } = useKin();
+  const t = useTranslations()
 
   const data = {
     user: {
@@ -39,22 +41,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     },
     navMain: [
       {
-        title: "Home",
+        title: t('generic.dashboard'),
         url: "/dashboard",
         icon: SquareTerminal,
       },
       {
-        title: "Organization files",
+        title: t('sidebar.fileSystem'),
         url: "/dashboard/files-system",
         icon: FolderOpen,
         items: [
           {
-            title: "New folder",
+            title: t('sidebar.addFolder'),
             url: "",
             icon: FolderPlus,
           },
           {
-            title: "New document",
+            title: t('sidebar.addFile'),
             url: "",
             icon: FilePlus,
           },
@@ -63,12 +65,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     ],
     support: [
       {
-        title: "Help",
+        title: t('sidebar.help'),
         url: "#",
         icon: HelpCircle,
       },
       {
-        title: "Report a bug",
+        title: t('sidebar.bug'),
         url: "#",
         icon: Bug,
         triggerDialog: BugReportDialog,
@@ -79,7 +81,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: BookOpen,
       },
       {
-        title: "Settings",
+        title: t('sidebar.settings'),
         url: "/dashboard/settings",
         icon: Settings,
       },

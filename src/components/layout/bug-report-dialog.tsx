@@ -35,6 +35,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 
 const bugReportSchema = z.object({
   title: z
@@ -61,6 +62,8 @@ type BugReportForm = z.infer<typeof bugReportSchema>;
 export default function BugReportDialog() {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const t = useTranslations();
 
   const form = useForm<BugReportForm>({
     resolver: zodResolver(bugReportSchema),
@@ -94,17 +97,16 @@ export default function BugReportDialog() {
       >
         <Bug width={16} />{" "}
         <span className="group-data-[collapsible=icon]:hidden">
-          Report a bug
+          {t("sidebar.bug")}
         </span>
       </span>
       <DialogContent className="sm:max-w-[600px]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <DialogHeader>
-              <DialogTitle>Report a Bug</DialogTitle>
+              <DialogTitle>{t("sidebar.bug")}</DialogTitle>
               <DialogDescription>
-                Please provide detailed information about the bug you&apos;ve
-                encountered. This will help us resolve the issue more quickly.
+                {t("bugReport.modalDescription")}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
@@ -113,15 +115,15 @@ export default function BugReportDialog() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>{t("bugReport.title")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Brief description of the issue"
+                        placeholder={t("bugReport.titlePlaceholder")}
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      Provide a clear and concise title for the bug.
+                      {t("bugReport.titleParagraph")}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -132,25 +134,35 @@ export default function BugReportDialog() {
                 name="severity"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Severity Level</FormLabel>
+                    <FormLabel>{t("bugReport.severity")}</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select severity level" />
+                          <SelectValue
+                            placeholder={t("bugReport.severityPlaceholder")}
+                          />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="critical">Critical</SelectItem>
-                        <SelectItem value="high">High</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="low">Low</SelectItem>
+                        <SelectItem value="critical">
+                          {t("bugReport.severitySelect.critical")}
+                        </SelectItem>
+                        <SelectItem value="high">
+                          {t("bugReport.severitySelect.high")}
+                        </SelectItem>
+                        <SelectItem value="medium">
+                          {t("bugReport.severitySelect.medium")}
+                        </SelectItem>
+                        <SelectItem value="low">
+                          {t("bugReport.severitySelect.low")}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     <FormDescription>
-                      How severe is this bug affecting the system?
+                      {t("bugReport.severityParagraph")}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -164,13 +176,13 @@ export default function BugReportDialog() {
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Detailed description of the bug"
+                        placeholder={t("bugReport.descriptionPlaceholder")}
                         className="h-20"
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      Provide a detailed description of what the bug is.
+                      {t("bugReport.descriptionParagraph")}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -181,18 +193,16 @@ export default function BugReportDialog() {
                 name="steps"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Steps to Reproduce</FormLabel>
+                    <FormLabel>{t("bugReport.steps")}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="1. Go to...
-2. Click on...
-3. Observe that..."
+                        placeholder={t("bugReport.stepsPlaceholder")}
                         className="h-20"
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      List the steps to reproduce this bug.
+                    {t("bugReport.stepsParagraph")}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -204,10 +214,10 @@ export default function BugReportDialog() {
                   name="expectedResult"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Expected Result</FormLabel>
+                      <FormLabel>{t("bugReport.expectedRes")}</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="What should have happened?"
+                          placeholder={t("bugReport.expectedResPlaceholder")}
                           className="h-20"
                           {...field}
                         />
@@ -221,10 +231,10 @@ export default function BugReportDialog() {
                   name="actualResult"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Actual Result</FormLabel>
+                      <FormLabel>{t("bugReport.actualRes")}</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="What actually happened?"
+                          placeholder={t("bugReport.actualResPlaceholder")}
                           className="h-20"
                           {...field}
                         />
@@ -241,13 +251,13 @@ export default function BugReportDialog() {
                 variant="outline"
                 onClick={() => setOpen(!open)}
               >
-                Cancel
+                {t("generic.cancel")}
               </Button>
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Submit Report
+                {t("bugReport.submit")}
               </Button>
             </DialogFooter>
           </form>

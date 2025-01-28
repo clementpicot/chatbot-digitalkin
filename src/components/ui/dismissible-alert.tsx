@@ -3,6 +3,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { DismissibleAlertProps } from "@/types";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export function DismissibleAlert({
@@ -11,6 +12,7 @@ export function DismissibleAlert({
   icon: Icon,
 }: DismissibleAlertProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const t = useTranslations()
 
   const handleClose = () => {
     setIsVisible(false);
@@ -23,7 +25,7 @@ export function DismissibleAlert({
       {Icon && (
         <div className="mb-2 flex items-center gap-2">
           <Icon width={20} />
-          <span className="capitalize text-sm">{variant}</span>
+          <span className="capitalize text-sm">{t(`variants.${variant}`)}</span>
         </div>
       )}
       <AlertDescription>{content}</AlertDescription>

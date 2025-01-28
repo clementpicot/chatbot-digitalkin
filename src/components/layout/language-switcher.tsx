@@ -1,19 +1,17 @@
 "use client";
 
-import { useTranslation } from "@/hooks/use-translation";
-import { LocaleContext } from "@/providers/locale-provider";
-import { useContext } from "react";
+import { setUserLocale } from "@/services/locale";
+import { useLocale, useTranslations } from "next-intl";
+
 
 export default function LanguageSwitcher() {
-  const { t } = useTranslation();
-  const { locale, setLocale } = useContext(LocaleContext);
-
-  const isLocale = locale === "fr" ? "en" : "fr";
+  const locale = useLocale();
+  const t = useTranslations();
 
   return (
     <div>
-      <button data-active={isLocale} onClick={() => setLocale(isLocale)}>
-        {t("switch")} {locale === "fr" ? t("english") : t("french")}
+      <button onClick={() => setUserLocale(locale === "en" ? "fr" : "en")}>
+        {t("user.lang")}
       </button>
     </div>
   );

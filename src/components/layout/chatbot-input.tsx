@@ -9,20 +9,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import TooltipButton from "../ui/tooltip-button";
 import { Message } from "./chatbot-interface";
-
-const keywordResponses: Record<string, string> = {
-  merge:
-    "I can help you merge multiple files into a single file. Please provide the files you want to merge.",
-  create: "What type of file would you like me to create?",
-  translate:
-    "I'm ready to help you translate a file. Please specify the file and the target language.",
-};
-
-const badges: string[] = [
-  "Merge multiple files",
-  "Create a file",
-  "Translate a PDF",
-];
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ChatbotInput({
   messages,
@@ -35,6 +22,27 @@ export default function ChatbotInput({
 }) {
   const [userInput, setUserInput] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const t = useTranslations();
+  const locale = useLocale()
+
+  const keywordResponses: Record<string, string> = {
+    merge:
+      "I can help you merge multiple files into a single file. Please provide the files you want to merge.",
+    create: "What type of file would you like me to create?",
+    translate:
+      "I'm ready to help you translate a file. Please specify the file and the target language.",
+    fusionner:
+      "Je peux vous aider à fusionner plusieurs fichiers en un seul. Veuillez fournir les fichiers que vous souhaitez fusionner.",
+    créer: "Quel type de fichier souhaitez-vous créer ?",
+    traduire:
+      "Je suis prêt à vous aider à traduire un fichier. Veuillez préciser le fichier et la langue cible.",
+  };
+
+  const badges: string[] = [
+    locale === 'en' ? "Merge multiple files" : "Fusionner plusieurs fichiers",
+    locale === 'en' ? "Create a file" : "Créer un fichier",
+    locale === 'en' ? "Translate a PDF" : "Traduire un PDF",
+  ];
 
   const addMessage = (message: string) => {
     if (!message.trim()) return;
@@ -97,7 +105,7 @@ export default function ChatbotInput({
     // In a real context, the agent would answer back to the user with
     // precise data/information, but I didn't want to take too much time
     // implementing this feature and allocate more time on User Experience
-    return "I apologize, but I'm not sure how to help with your request.";
+    return t('kins.chat.error');
   }
 
   return (
@@ -111,7 +119,7 @@ export default function ChatbotInput({
               className="cursor-pointer"
               onClick={() => addMessage(badge)}
             >
-              {badge}
+              {t('kins.chat.badge', {badge: badge})}
             </Badge>
           ))}
         </div>
@@ -128,7 +136,7 @@ export default function ChatbotInput({
             target.style.height = "0px";
             target.style.height = target.scrollHeight + "px";
           }}
-          placeholder="Message to your Kin"
+          placeholder={t('kins.chat.placeholder')}
         />
         <div className="flex justify-between mt-4">
           <div className="flex gap-2">

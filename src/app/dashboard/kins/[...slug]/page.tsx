@@ -19,6 +19,7 @@ export default async function Page({
 }) {
   const slug = (await params).slug;
 
+
   return (
     <div className="md:flex gap-4">
       <Cell className="flex-1 flex flex-col h-[calc(100vh-64px-1rem)]">

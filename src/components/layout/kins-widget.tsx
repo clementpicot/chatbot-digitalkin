@@ -2,12 +2,14 @@
 
 import { useKin } from "@/providers/kin-provider";
 import { ChevronRight, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
 export default function KinWidget() {
   const { kins } = useKin();
+  const t = useTranslations();
 
   return (
     <div>
@@ -15,7 +17,7 @@ export default function KinWidget() {
         <h2 className="text-2xl">Kins</h2>
         <Button asChild>
           <Link href="/dashboard/kins/create">
-            <Plus /> Create a new Kin
+            <Plus /> {t("kins.create")}
           </Link>
         </Button>
       </div>
@@ -31,18 +33,23 @@ export default function KinWidget() {
                 href={`/dashboard/kins/${kin.url}`}
               >
                 <div className="flex justify-between items-center gap-4">
-                  <h3 className="text-xl font-bold">Kin {kin.title}</h3>
+                  <h3 className="text-xl font-bold">
+                    Kin {t("kins.name", { name: kin.title })}
+                  </h3>
                   <span className="flex items-center gap-0.5 text-xs underline underline-offset-2">
-                    New chat <ChevronRight width={12} />
+                    {t("generic.newChat")} <ChevronRight width={12} />
                   </span>
                 </div>
                 <p className="text-sm mt-2 mb-4 text-muted-foreground">
-                  {kin.description}
+                  {t("kins.description", { description: kin.description })}
                 </p>
 
                 <div className="mt-auto">
                   <Badge className="hover:bg-primary">
-                    {kin.remainingTokens} of {kin.maxTokens} tokens left
+                    {t("kins.tokens", {
+                      remainingTokens: kin.remainingTokens,
+                      maxTokens: kin.maxTokens,
+                    })}
                   </Badge>
                 </div>
               </Link>

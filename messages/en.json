@@ -1,0 +1,113 @@
+{
+  "generic": {
+    "cancel": "Cancel",
+    "dashboard": "Home",
+    "newChat": "New chat",
+    "or": "or",
+    "select": "Select",
+    "calendar": "Calendar",
+    "newTask": "Add a new task...",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
+  "variants": {
+    "warning": "Warning",
+    "success": "Success"
+  },
+
+  "alerts": {
+    "title": "Alerts",
+    "alertTitle": "{title}",
+    "alertDescription": "{description}"
+  },
+
+  "timestamp": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "1weekAgo": "A week ago",
+    "1monthAgo": "Last month",
+    "2monthsAgo": "2 months ago"
+  },
+
+  "sidebar": {
+    "fileSystem": "File system",
+    "addFile": "New file",
+    "addFolder": "New folder",
+    "help": "Help",
+    "bug": "Report a bug",
+    "settings": "Settings"
+  },
+
+  "user": {
+    "tokens": "Refill Kin thoughts",
+    "tutorial": "Tutorial",
+    "theme": "Switch theme",
+    "lang": "Switch to french",
+    "logout": "Log out"
+  },
+
+  "bugReport": {
+    "modalDescription": "Please provide detailed information about the bug you've encountered. This will help us resolve the issue more quickly.",
+
+    "title": "Title",
+    "titlePlaceholder": "Brief description of the issue",
+    "titleParagraph": "Provide a clear and concise title for the bug.",
+
+    "severity": "Severity level",
+    "severitySelect": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "severityPlaceholder": "Select severity level",
+    "severityParagraph": "How severe is this bug affecting the system?",
+
+    "descriptionPlaceholder": "Detailed description of the bug",
+    "descriptionParagraph": "Provide a detailed description of what the bug is.",
+
+    "steps": "Steps to reproduce",
+    "stepsPlaceholder": "1. Go to... 2. Click on... 3. Observe that...",
+    "stepsParagraph": "List the steps to reproduce this bug.",
+
+    "expectedRes": "Expected result",
+    "expectedResPlaceholder": "What should have happened",
+    "actualRes": "Actual result",
+    "actualResPlaceholder": "What acutally happened",
+
+    "submit": "Submit report"
+  },
+
+  "kins": {
+    "modal": {
+      "title": "Select a Kin",
+      "description": "Your available Kins are listed below. Select one of them and start chatting, or create a new Kin to fit your needs.",
+      "create": "Create and configure a new Kin"
+    },
+    "chatHistory": {
+      "title": "Chat history",
+      "lastUser": "Last user"
+    },
+    "chat": {
+      "title": "Start a new chat with your Kin {name}",
+      "placeholder": "Message to your Kin",
+      "badge": "{badge}",
+      "error": "I apologize, but I'm not sure how to help with your request."
+    },
+    "name": "{name}",
+    "description": "{description}",
+    "tokens": "{remainingTokens} of {maxTokens} thoughts left",
+    "create": "Create a new Kin"
+  },
+
+  "fileSystem": {
+    "modified": "Recently modified",
+    "add": "Add new",
+    "allFiles": "All files",
+    "filter": "Filter files...",
+    "filename": "File name",
+    "uploadedBy": "Uploaded by",
+    "lastModified": "Last modified"
+  }
+}

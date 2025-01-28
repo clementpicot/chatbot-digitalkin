@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface Todo {
   id: string;
@@ -40,6 +41,8 @@ export default function TodoWidget() {
         ];
   });
   const [newTodo, setNewTodo] = useState("");
+
+  const t = useTranslations();
 
   // Save todos to localStorage whenever they change
   useEffect(() => {
@@ -76,7 +79,7 @@ export default function TodoWidget() {
     <div>
       <form onSubmit={handleSubmit} className="flex gap-2 my-4">
         <Input
-          placeholder="Add a new task..."
+          placeholder={t('generic.newTask')}
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           className="flex-1"

@@ -1,4 +1,5 @@
-import LocaleProvider from "@/providers/locale-provider";
+import {NextIntlClientProvider} from 'next-intl'
+import {getLocale, getMessages} from 'next-intl/server';
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -25,11 +26,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const initialLocale = cookieStore.get("app-locale")?.value || "fr";
+
+  const locale = await getLocale();
+
+  const messages = await getMessages();
 
   return (
-    <html lang={initialLocale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -38,9 +41,7 @@ export default async function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <LocaleProvider initialLocale={initialLocale}>
-            {children}
-          </LocaleProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

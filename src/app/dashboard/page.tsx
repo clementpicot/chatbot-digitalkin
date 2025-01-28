@@ -5,13 +5,16 @@ import { Calendar } from "@/components/ui/calendar";
 import Cell from "@/components/ui/cell";
 import { DataTable } from "@/components/ui/data-table";
 import { chatHistoryColumns, chatHistoryData } from "@/lib/data";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
+  const t = useTranslations();
+
   return (
     <div className="grid grid-cols-6 gap-8">
       <Cell className="col-span-6">
         <KinWidget />
-        <h3 className="text-xl mt-8">Chat history</h3>
+        <h3 className="text-xl mt-8">{t('kins.chatHistory.title')}</h3>
         <DataTable
           columns={chatHistoryColumns}
           data={chatHistoryData}
@@ -25,7 +28,7 @@ export default function Page() {
         <TodoWidget />
       </Cell>
       <Cell className="col-span-6 lg:col-span-2">
-        <h2 className="text-xl">Calendar</h2>
+        <h2 className="text-xl">{t('generic.calendar')}</h2>
         <Calendar
           classNames={{
             months:
@@ -38,7 +41,7 @@ export default function Page() {
         />
       </Cell>
       <Cell className="col-span-6 lg:col-span-2">
-        <h2 className="text-xl">Alerts</h2>
+        <h2 className="text-xl">{t('alerts.title')}</h2>
         <AlertWidget />
       </Cell>
     </div>

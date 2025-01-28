@@ -1,7 +1,10 @@
+"use client";
+
 import { MessageCirclePlus } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
+import { useTranslations } from "next-intl";
 
 export default function ChatHistory({
   slug,
@@ -10,6 +13,9 @@ export default function ChatHistory({
   slug: string;
   className: string;
 }) {
+
+  const t = useTranslations();
+
   return (
     <>
       <Button
@@ -17,13 +23,13 @@ export default function ChatHistory({
         asChild
       >
         <a href={`/dashboard/kins/${slug}`}>
-          <MessageCirclePlus /> New chat
+          <MessageCirclePlus /> {t('generic.newChat')}
         </a>
       </Button>
       <ScrollArea className={`pr-4 ${className}`}>
         <div className="mb-6">
           <h2 className="text-xs text-muted-foreground font-bold mb-2 pl-2">
-            Today
+            {t('timestamp.today')}
           </h2>
           {[...Array(4).keys()].map((item) => (
             <Link
@@ -37,7 +43,7 @@ export default function ChatHistory({
         </div>
         <div className="mb-6">
           <h2 className="text-xs text-muted-foreground font-bold mb-2 pl-2">
-            Yesterday
+          {t('timestamp.yesterday')}
           </h2>
           {[...Array(2).keys()].map((item) => (
             <Link
@@ -51,7 +57,7 @@ export default function ChatHistory({
         </div>
         <div className="mb-6">
           <h2 className="text-xs text-muted-foreground font-bold mb-2 pl-2">
-            A week ago
+          {t('timestamp.1weekAgo')}
           </h2>
           {[...Array(5).keys()].map((item) => (
             <Link
@@ -65,7 +71,7 @@ export default function ChatHistory({
         </div>
         <div className="mb-6">
           <h2 className="text-xs text-muted-foreground font-bold mb-2 pl-2">
-            Last month
+          {t('timestamp.1monthAgo')}
           </h2>
           {[...Array(3).keys()].map((item) => (
             <Link
@@ -79,7 +85,7 @@ export default function ChatHistory({
         </div>
         <div className="mb-6">
           <h2 className="text-xs text-muted-foreground font-bold mb-2 pl-2">
-            2 months ago
+          {t('timestamp.2monthsAgo')}
           </h2>
           {[...Array(3).keys()].map((item) => (
             <Link

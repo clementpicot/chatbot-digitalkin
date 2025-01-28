@@ -1,0 +1,113 @@
+{
+  "generic": {
+    "cancel": "Annuler",
+    "dashboard": "Accueil",
+    "newChat": "Nouveau chat",
+    "or": "ou",
+    "select": "Sélectionner",
+    "calendar": "Calendrier",
+    "newTask": "Ajouter une nouvelle tâche...",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+
+  "variants": {
+    "warning": "Avertissement",
+    "success": "Succès"
+  },
+
+  "alerts": {
+    "title": "Alertes",
+    "alertTitle": "{title}",
+    "alertDescription": "{description}"
+  },
+
+  "timestamp": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "1weekAgo": "Il y a une semaine",
+    "1monthAgo": "Le mois dernier",
+    "2monthsAgo": "Il y a 2 mois"
+  },
+
+  "sidebar": {
+    "fileSystem": "Système de fichiers",
+    "addFile": "Nouveau fichier",
+    "addFolder": "Nouveau dossier",
+    "help": "Help",
+    "bug": "Report a bug",
+    "settings": "Paramètres"
+  },
+
+  "user": {
+    "tokens": "Recharger les pensées",
+    "tutorial": "Tutoriel",
+    "theme": "Changer de thème",
+    "lang": "Passer en anglais",
+    "logout": "Déconnexion"
+  },
+
+  "bugReport": {
+    "modalDescription": "Veuillez fournir des informations détaillées sur le bug que vous avez rencontré. Cela nous aidera à résoudre le problème plus rapidement.",
+
+    "title": "Title",
+    "titlePlaceholder": "Brève description du problème",
+    "titleParagraph": "Fournir un titre clair et concis pour le bug",
+
+    "severity": "Niveau de gravité",
+    "severitySelect": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "moyen",
+      "low": "Low"
+    },
+    "severityPlaceholder": "Sélectionnez le niveau de gravité",
+    "severityParagraph": "Quelle est la gravité de ce bug affectant le système ?",
+
+    "descriptionPlaceholder": "Description détaillée du bug",
+    "descriptionParagraph": "Fournir une description détaillée de ce qu'est le bug",
+
+    "steps": "Étapes à reproduire",
+    "stepsPlaceholder": "1. Aller à... 2. Cliquez sur... 3. Observez que...",
+    "stepsParagraph": "Liste des étapes pour reproduire ce bug",
+
+    "expectedRes": "Résultat attendu",
+    "expectedResPlaceholder": "Ce qui aurait dû se produire",
+    "actualRes": "Résultat réel",
+    "actualResPlaceholder": "Ce qui s'est réellement passé",
+
+    "submit": "Soumettre le rapport"
+  },
+
+  "kins": {
+    "modal": {
+      "title": "Select a Kin",
+      "description": "Vos Kins disponibles sont listés ci-dessous. Sélectionnez l'un d'entre eux et commencez à discuter, ou créez un nouveau Kin pour répondre à vos besoins.",
+      "create": "Créer et configurer un nouveau Kin"
+    },
+    "chatHistory": {
+      "title": "Historique du chat",
+      "lastUser": "Dernier utilisateur"
+    },
+    "chat": {
+      "title": "Démarrer un nouveau chat avec votre Kin {name}",
+      "placeholder": "Message à votre Kin",
+      "badge": "{badge}",
+      "error": "Je vous prie de m'excuser, mais je ne sais pas comment répondre à votre demande."
+    },
+    "name": "{name}",
+    "description": "{description}",
+    "tokens": "{remainingTokens} sur {maxTokens} pensées restantes",
+    "create": "Créer un nouveau Kin"
+  },
+
+  "fileSystem": {
+    "modified": "Modifié récemment",
+    "add": "Ajouter",
+    "allFiles": "Tous les fichiers",
+    "filter": "Filter les fichiers...",
+    "filename": "Nom du fichier",
+    "uploadedBy": "Téléchargé par",
+    "lastModified": "Modifié"
+  }
+}

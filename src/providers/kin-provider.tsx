@@ -1,6 +1,7 @@
 "use client";
 
 import { Kin, KinContextType } from "@/types";
+import { useLocale } from "next-intl";
 import React, { createContext, useContext, useState } from "react";
 
 const KinContext = createContext<KinContextType | undefined>(undefined);
@@ -10,21 +11,27 @@ export default function KinProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const locale = useLocale();
+
   const dummyKins: Kin[] = [
     {
       id: 1,
-      title: "R&D",
+      title: locale === 'en' ? "R&D" : "R&D",
       description:
-        "Analyze and process state of the art, literature reviews, definition of research programs...",
+        locale === "en"
+          ? "Analyze and process state of the art, literature reviews, definition of research programs..."
+          : "Analyser et traiter l'état de l'art, les revues de littérature, la définition des programmes de recherche...",
       remainingTokens: 9457,
       url: "r-and-d",
       maxTokens: 100000,
     },
     {
       id: 2,
-      title: "DAF",
+      title: locale === 'en' ? "DAF" : "DAF",
       description:
-        "Take over tasks such as low-value-added accounting production for finance professionals.",
+        locale === "en"
+          ? "Take over tasks such as low-value-added accounting production for finance professionals."
+          : "Prendre en charge des tâches telles que la production comptable à faible valeur ajoutée pour les professionnels de la finance.",
       remainingTokens: 59517,
       url: "daf",
       maxTokens: 100000,

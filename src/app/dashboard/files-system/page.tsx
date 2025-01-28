@@ -19,14 +19,18 @@ import {
   Plus,
   Trash
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Page() {
+
+  const t = useTranslations();
+
   return (
     <Cell>
       <div className="grid grid-cols-5 gap-12">
         <div className="col-span-2">
-          <h2 className="text-xl font-semibold">Add new</h2>
+          <h2 className="text-xl font-semibold">{t('fileSystem.add')}</h2>
           <div className="grid lg:grid-cols-2 gap-4 mt-2">
             <div className="relative flex flex-col border border-border hover:bg-foreground/5 rounded-md p-4">
               <Link href="#">
@@ -36,7 +40,7 @@ export default function Page() {
                 <div className="bg-foreground w-max rounded-md p-1.5">
                   <FileText strokeWidth={1.5} className="text-background" />
                 </div>
-                <p className="mt-4 font-semibold">New document</p>
+                <p className="mt-4 font-semibold">{t('sidebar.addFile')}</p>
               </Link>
             </div>
             <div className="relative flex flex-col border border-border hover:bg-foreground/5 rounded-md p-4">
@@ -47,13 +51,13 @@ export default function Page() {
                 <div className="bg-foreground w-max rounded-md p-1.5">
                   <FolderClosed strokeWidth={1.5} className="text-background" />
                 </div>
-                <p className="mt-4 font-semibold">New folder</p>
+                <p className="mt-4 font-semibold">{t('sidebar.addFolder')}</p>
               </Link>
             </div>
           </div>
         </div>
         <div className="col-span-3">
-          <h2 className="text-xl font-semibold">Recently modified</h2>
+          <h2 className="text-xl font-semibold">{t('fileSystem.modified')}</h2>
           <div className="mt-2 grid lg:grid-cols-2 gap-x-4 gap-y-2">
             <div className="flex items-center justify-between border py-2 px-4 rounded-lg">
               <div className="flex items-center gap-3">
@@ -135,7 +139,7 @@ export default function Page() {
         </div>
       </div>
       <div className="mt-8">
-        <h2 className="text-xl font-semibold">All files</h2>
+        <h2 className="text-xl font-semibold">{t('fileSystem.allFiles')}</h2>
         <DataTable columns={fileSystemColumns} data={fileSystemData} />
       </div>
     </Cell>

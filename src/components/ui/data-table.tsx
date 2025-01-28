@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import { DataTableProps } from "@/types";
+import { useTranslations } from "next-intl";
 
 export function DataTable<TData, TValue>({
   data,
@@ -33,6 +34,9 @@ export function DataTable<TData, TValue>({
   pagination = true,
   rowHeight = "normal",
 }: DataTableProps<TData, TValue>) {
+
+  const t = useTranslations();
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -65,7 +69,7 @@ export function DataTable<TData, TValue>({
       {canFilter && (
         <div className="flex items-center py-4">
           <Input
-            placeholder="Filter files..."
+            placeholder={t('fileSystem.filter')}
             value={
               (table.getColumn("filename")?.getFilterValue() as string) ?? ""
             }
@@ -142,7 +146,7 @@ export function DataTable<TData, TValue>({
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
-              Previous
+              {t('generic.previous')}
             </Button>
             <Button
               variant="outline"
@@ -150,7 +154,7 @@ export function DataTable<TData, TValue>({
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
-              Next
+              {t('generic.next')}
             </Button>
           </div>
         </div>

@@ -31,6 +31,7 @@ import { useTutorial } from "@/providers/tutorial-provider";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import LanguageSwitcher from "./layout/language-switcher";
+import { useTranslations } from "next-intl";
 
 export function NavUser({
   user,
@@ -44,6 +45,7 @@ export function NavUser({
   const { isMobile } = useSidebar();
   const { theme, setTheme } = useTheme();
   const { startTutorial } = useTutorial();
+  const t = useTranslations()
 
   return (
     <SidebarMenu className="tutorial-1">
@@ -87,34 +89,34 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                Refill Kin thoughts
+                {t('user.tokens')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={startTutorial}>
                 <BookOpenText />
-                Tutorial
+                {t('user.tutorial')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               >
                 {theme === "light" ? <SunIcon /> : <MoonIcon />}
-                Switch theme
+                {t('user.theme')}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Languages /> <LanguageSwitcher />
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/settings">
-                  <Settings /> Settings
+                  <Settings /> {t('sidebar.settings')}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              Log out
+              {t('user.logout')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
