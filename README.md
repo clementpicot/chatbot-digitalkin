@@ -37,13 +37,13 @@ pnpm dev
 
 Afin de cadrer au mieux les enjeux techniques et UX de la plateforme KinConnect, un persona a été imaginé dans le but de refléter au mieux l'expérience d'un utilisateur-type. Il est important de se projeter à travers ce persona pour mieux comprendre les besoins ainsi que le parcours utilisateur.
 
-[Persona Juliette Costa](https://www.notion.so/Persona-1892daa1c98f80399c32e1220164b72b?pvs=4)
+[Persona Juliette Costa](https://near-aunt-c1b.notion.site/Persona-1892daa1c98f80399c32e1220164b72b?pvs=73)
 
 ## Demo en ligne
 
 Le projet a été déployé sur Vercel dans le but de tester l'application directement en production.
 
-[Lien de la démo](chatbot-digitalkin.vercel.app/)
+[Lien de la démo](https://chatbot-digitalkin.vercel.app/)
 
 ## Features & itérations
 
