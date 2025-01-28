@@ -28,9 +28,6 @@ import {
   getRandomFileType,
   getRandomValue,
 } from "./utils";
-import { useLocale } from "next-intl";
-
-const locale = ''
 
 export const users: User[] = [
   {
@@ -293,7 +290,7 @@ export const chatHistoryColumns: ColumnDef<HistoryTableData>[] = [
   },
   {
     accessorKey: "lastUser",
-    header: locale === 'en' ? "Last user" : "Dernier utilisateur",
+    header: "Last user",
     cell: ({ row }) => {
       const user = row.getValue("lastUser") as User;
       const randomAvatar = getRandomAvatar();
