@@ -1,6 +1,5 @@
 import AlertWidget from "@/components/layout/alerts-widget";
 import KinWidget from "@/components/layout/kins-widget";
-import LanguageSwitcher from "@/components/layout/language-switcher";
 import TodoWidget from "@/components/layout/todo-widget";
 import { Calendar } from "@/components/ui/calendar";
 import Cell from "@/components/ui/cell";
@@ -11,7 +10,6 @@ export default function Page() {
   return (
     <div className="grid grid-cols-6 gap-8">
       <Cell className="col-span-6">
-        <LanguageSwitcher />
         <KinWidget />
         <h3 className="text-xl mt-8">Chat history</h3>
         <DataTable

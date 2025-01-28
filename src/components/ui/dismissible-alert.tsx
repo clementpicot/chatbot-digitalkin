@@ -21,8 +21,9 @@ export function DismissibleAlert({
   return (
     <Alert variant={variant} className="relative">
       {Icon && (
-        <div className="">
-          <Icon className="" />
+        <div className="mb-2 flex items-center gap-2">
+          <Icon width={20} />
+          <span className="capitalize text-sm">{variant}</span>
         </div>
       )}
       <AlertDescription>{content}</AlertDescription>

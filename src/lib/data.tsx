@@ -67,6 +67,14 @@ export const fileType: FileType[] = [
 
 export const steps: Step[] = [
   {
+    element: ".tutorial-2",
+    popover: {
+      title: "Application sidebar",
+      content:
+        "The sidebar allows you to navigate through the entire application services! Chat, files, your profile... Everything you need to get started!",
+    },
+  },
+  {
     element: ".tutorial-1",
     popover: {
       title: "Your profile",
@@ -75,19 +83,19 @@ export const steps: Step[] = [
     },
   },
   {
-    element: ".tutorial-2",
+    element: ".tutorial-3",
     popover: {
-      title: "Application sidebar",
+      title: "Dashboard",
       content:
-        "The sidebar allows you to navigate through the entire application services! You can manage your existing chats, start a new chat, or create a new Kin to fit your needs!",
+        "This is where all the information you need is centralized, you can : start a new chat with one of your Kins, browse the chat history, create todos, manage your alerts...",
     },
   },
   {
-    element: ".tutorial-3",
+    element: ".tutorial-4",
     popover: {
-      title: "Our chatbot",
+      title: "New chat",
       content:
-        "This is where the magic happens. Start asking anything related to any topic to your Kin, and he will answer back to you with the information you need. 🤖",
+        "Try to click this button, start a new chat with one of your available Kins and ask him anything! Let him do the rest 🤖",
     },
   },
 ];

@@ -20,7 +20,7 @@ export default function DialogChat() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex gap-2 font-bold my-4 max-w-[calc(100%-1rem)] w-full mx-auto">
+        <Button className="flex gap-2 font-bold my-4 max-w-[calc(100%-1rem)] w-full mx-auto tutorial-4">
           <MessageCirclePlus />{" "}
           <span className="group-data-[collapsible=icon]:hidden">
             Start a new chat
