@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import Cell from "@/components/ui/cell"
+import { useTranslations } from "next-intl"
 
 const KinFormSchema = z.object({
   name: z.string().min(2, {
@@ -56,6 +57,8 @@ export default function CreateKinPage() {
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([])
   const [inputMessage, setInputMessage] = useState("")
 
+  const t = useTranslations();
+
   const form = useForm<KinFormValues>({
     resolver: zodResolver(KinFormSchema),
     defaultValues,
@@ -88,15 +91,15 @@ export default function CreateKinPage() {
         <div className="space-y-6">
           <div className="flex items-center gap-2 mb-8">
             <Bot className="h-8 w-8" />
-            <h1 className="text-2xl font-bold">Create a new Kin</h1>
+            <h1 className="text-2xl font-bold">{t('createKin.title')}</h1>
           </div>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div>
                 <div className="flex flex-col space-y-1.5">
-                  <h3 className="text-xl font-semibold leading-none tracking-tight">Basic Information</h3>
-                  <p className="text-sm text-muted-foreground">Configure the basic settings for your Kin.</p>
+                  <h3 className="text-xl font-semibold leading-none tracking-tight">{t('createKin.infos.title')}</h3>
+                  <p className="text-sm text-muted-foreground">{t('createKin.infos.paragraph')}</p>
                 </div>
                 <div className="py-6 space-y-4">
                   <FormField
@@ -104,11 +107,11 @@ export default function CreateKinPage() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Kin Name</FormLabel>
+                        <FormLabel>{t('createKin.infos.name')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="E.g., Sales Assistant" {...field} />
+                          <Input placeholder={t('createKin.infos.namePh')} {...field} />
                         </FormControl>
-                        <FormDescription>This is how your Kin will identify itself.</FormDescription>
+                        <FormDescription>{t('createKin.infos.nameP')}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -120,9 +123,9 @@ export default function CreateKinPage() {
                       <FormItem>
                         <FormLabel>Description</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Describe what your Kin does..." {...field} />
+                          <Textarea placeholder={t('createKin.infos.descriptionPh')} {...field} />
                         </FormControl>
-                        <FormDescription>Brief description of your Kin's purpose.</FormDescription>
+                        <FormDescription>{t('createKin.infos.descriptionP')}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -132,21 +135,21 @@ export default function CreateKinPage() {
                     name="role"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Role</FormLabel>
+                        <FormLabel>{t('createKin.infos.role')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a role" />
+                              <SelectValue placeholder={t('createKin.infos.rolePh')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="customer-service">Human Resources</SelectItem>
+                            <SelectItem value="customer-service">{t('createKin.infos.roleSelect.hr')}</SelectItem>
                             <SelectItem value="sales">R&D</SelectItem>
-                            <SelectItem value="technical-support">Technical Support</SelectItem>
+                            <SelectItem value="technical-support">{t('createKin.infos.roleSelect.ts')}</SelectItem>
                             <SelectItem value="content-creator">Finance</SelectItem>
                           </SelectContent>
                         </Select>
-                        <FormDescription>The primary role of your Kin.</FormDescription>
+                        <FormDescription>{t('createKin.infos.roleP')}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -156,47 +159,8 @@ export default function CreateKinPage() {
 
               <div>
                 <div className="flex flex-col space-y-1.5">
-                  <h3 className="text-xl font-semibold leading-none tracking-tight">Personality & Behavior</h3>
-                  <p className="text-sm text-muted-foreground">Define how your Kin should interact with users.</p>
-                </div>
-                <div className="py-6 space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="personality"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Personality Description</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Describe the Kin's personality..." className="h-20" {...field} />
-                        </FormControl>
-                        <FormDescription>Define the tone, style, and character of your Kin.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="basePrompt"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Base Prompt</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Enter the base prompt for your Kin..." className="h-32" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          The foundational instructions that define your Kin's behavior.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex flex-col space-y-1.5">
-                  <h3 className="text-xl font-semibold leading-none tracking-tight">Advanced Settings</h3>
-                  <p className="text-sm text-muted-foreground">Fine-tune your Kin's capabilities and behavior.</p>
+                  <h3 className="text-xl font-semibold leading-none tracking-tight">{t('createKin.settings.title')}</h3>
+                  <p className="text-sm text-muted-foreground">{t('createKin.settings.paragraph')}</p>
                 </div>
                 <div className="py-6">
                   <Accordion type="single" collapsible className="w-full">
@@ -204,7 +168,7 @@ export default function CreateKinPage() {
                       <AccordionTrigger className="gap-2">
                         <div className="flex items-center gap-2">
                           <Settings2 className="h-4 w-4" />
-                          Model Settings
+                          {t('createKin.settings.model.title')}
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="space-y-4">
@@ -213,21 +177,21 @@ export default function CreateKinPage() {
                           name="temperature"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Temperature</FormLabel>
+                              <FormLabel>{t('createKin.settings.model.temperature')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Select temperature" />
+                                    <SelectValue placeholder={t('createKin.settings.model.temperaturePh')} />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="0.1">0.1 - Most Focused</SelectItem>
-                                  <SelectItem value="0.5">0.5 - Balanced</SelectItem>
-                                  <SelectItem value="0.7">0.7 - Creative</SelectItem>
-                                  <SelectItem value="1.0">1.0 - Most Creative</SelectItem>
+                                  <SelectItem value="0.1">0.1 - {t('createKin.settings.model.temperatureSelect.focused')}</SelectItem>
+                                  <SelectItem value="0.5">0.5 - {t('createKin.settings.model.temperatureSelect.balanced')}</SelectItem>
+                                  <SelectItem value="0.7">0.7 - {t('createKin.settings.model.temperatureSelect.creative')}</SelectItem>
+                                  <SelectItem value="1.0">1.0 - {t('createKin.settings.model.temperatureSelect.most')}</SelectItem>
                                 </SelectContent>
                               </Select>
-                              <FormDescription>Controls randomness in responses.</FormDescription>
+                              <FormDescription>{t('createKin.settings.model.temperatureP')}</FormDescription>
                             </FormItem>
                           )}
                         />
@@ -236,20 +200,20 @@ export default function CreateKinPage() {
                           name="maxTokens"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Max Tokens</FormLabel>
+                              <FormLabel>{t('createKin.settings.model.tokens')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Select max tokens" />
+                                    <SelectValue placeholder={t('createKin.settings.model.tokensPh')} />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="1024">1024 tokens</SelectItem>
-                                  <SelectItem value="2048">2048 tokens</SelectItem>
-                                  <SelectItem value="4096">4096 tokens</SelectItem>
+                                  <SelectItem value="1024">1024 {t('generic.thoughts')}</SelectItem>
+                                  <SelectItem value="2048">2048 {t('generic.thoughts')}</SelectItem>
+                                  <SelectItem value="4096">4096 {t('generic.thoughts')}</SelectItem>
                                 </SelectContent>
                               </Select>
-                              <FormDescription>Maximum length of responses.</FormDescription>
+                              <FormDescription>{t('createKin.settings.model.tokensP')}</FormDescription>
                             </FormItem>
                           )}
                         />
@@ -259,7 +223,7 @@ export default function CreateKinPage() {
                       <AccordionTrigger>
                         <div className="flex items-center gap-2">
                           <Brain className="h-4 w-4" />
-                          Capabilities
+                          {t('createKin.settings.capabilities.title')}
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="space-y-4">
@@ -269,8 +233,8 @@ export default function CreateKinPage() {
                           render={({ field }) => (
                             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                               <div className="space-y-0.5">
-                                <FormLabel className="text-base">Web Browsing</FormLabel>
-                                <FormDescription>Allow Kin to search and browse the internet.</FormDescription>
+                                <FormLabel className="text-base">{t('createKin.settings.capabilities.webTitle')}</FormLabel>
+                                <FormDescription>{t('createKin.settings.capabilities.webP')}</FormDescription>
                               </div>
                               <FormControl>
                                 <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -284,8 +248,8 @@ export default function CreateKinPage() {
                           render={({ field }) => (
                             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                               <div className="space-y-0.5">
-                                <FormLabel className="text-base">Code Interpreter</FormLabel>
-                                <FormDescription>Enable code execution capabilities.</FormDescription>
+                                <FormLabel className="text-base">{t('createKin.settings.capabilities.codeTitle')}</FormLabel>
+                                <FormDescription>{t('createKin.settings.capabilities.codeP')}</FormDescription>
                               </div>
                               <FormControl>
                                 <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -299,8 +263,8 @@ export default function CreateKinPage() {
                           render={({ field }) => (
                             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                               <div className="space-y-0.5">
-                                <FormLabel className="text-base">Database Access</FormLabel>
-                                <FormDescription>Allow querying and updating databases.</FormDescription>
+                                <FormLabel className="text-base">{t('createKin.settings.capabilities.dbTitle')}</FormLabel>
+                                <FormDescription>{t('createKin.settings.capabilities.dbP')}</FormDescription>
                               </div>
                               <FormControl>
                                 <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -314,7 +278,7 @@ export default function CreateKinPage() {
                       <AccordionTrigger>
                         <div className="flex items-center gap-2">
                           <Sparkles className="h-4 w-4" />
-                          Memory Settings
+                          {t('createKin.settings.memory.title')}
                         </div>
                       </AccordionTrigger>
                       <AccordionContent>
@@ -323,7 +287,7 @@ export default function CreateKinPage() {
                           name="memoryType"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Memory Type</FormLabel>
+                              <FormLabel>{t('createKin.settings.memory.type')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
@@ -331,12 +295,12 @@ export default function CreateKinPage() {
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="none">No Memory</SelectItem>
-                                  <SelectItem value="conversational">Conversational</SelectItem>
-                                  <SelectItem value="long-term">Long-term Memory</SelectItem>
+                                  <SelectItem value="none">{t('createKin.settings.memory.typeSelect.noMem')}</SelectItem>
+                                  <SelectItem value="conversational">{t('createKin.settings.memory.typeSelect.conv')}</SelectItem>
+                                  <SelectItem value="long-term">{t('createKin.settings.memory.typeSelect.mem')}</SelectItem>
                                 </SelectContent>
                               </Select>
-                              <FormDescription>How your Kin remembers past interactions.</FormDescription>
+                              <FormDescription>{t('createKin.settings.memory.typeP')}</FormDescription>
                             </FormItem>
                           )}
                         />
@@ -346,7 +310,7 @@ export default function CreateKinPage() {
                 </div>
                 <div className="flex items-center p-6 pt-0">
                   <Button type="submit" className="ml-auto">
-                    Create Kin
+                    {t('kins.create')}
                   </Button>
                 </div>
               </div>
@@ -359,9 +323,9 @@ export default function CreateKinPage() {
             <div className="flex flex-col space-y-1.5">
               <h3 className="text-xl font-semibold leading-none tracking-tight flex items-center gap-2">
                 <MessagesSquare className="h-5 w-5" />
-                Test Your Kin
+                {t('createKin.test.title')}
               </h3>
-              <p className="text-sm text-muted-foreground">Try out your Kin's responses before deploying.</p>
+              <p className="text-sm text-muted-foreground">{t('createKin.test.paragraph')}</p>
             </div>
             <div className="flex-1">
               <ScrollArea className="h-[600px] pr-4">
@@ -389,7 +353,7 @@ export default function CreateKinPage() {
             <div>
               <form onSubmit={handleTestMessage} className="flex w-full gap-2">
                 <Input
-                  placeholder="Test your Kin..."
+                  placeholder={`${t('createKin.test.title')}...`}
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                 />

@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -16,6 +17,8 @@ export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const t = useTranslations();
+
   const handleSubmit = async () => {
     "use server";
 
@@ -33,10 +36,8 @@ export function SignUpForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>
-            Create your account by entering your email and password below
-          </CardDescription>
+          <CardTitle className="text-2xl">{t("login.signUp")}</CardTitle>
+          <CardDescription>{t("login.signUpDescription")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={handleSubmit}>
@@ -52,7 +53,7 @@ export function SignUpForm({
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t("login.password")}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -61,7 +62,7 @@ export function SignUpForm({
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Repeat password</Label>
+                <Label htmlFor="password">{t("login.repeatPassword")}</Label>
                 <Input
                   id="repeat-password"
                   type="password"
@@ -70,13 +71,13 @@ export function SignUpForm({
                 />
               </div>
               <Button type="submit" className="w-full">
-                Sign up
+                {t("login.signUp")}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Already have an account?{" "}
+              {t("login.alreadyAccount")}{" "}
               <Link href="/" className="underline underline-offset-4">
-                Login
+                {t("login.login")}
               </Link>
             </div>
           </form>

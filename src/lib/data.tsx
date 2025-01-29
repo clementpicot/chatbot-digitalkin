@@ -65,21 +65,25 @@ export const fileType: FileType[] = [
   { type: "txt", icon: FileText },
 ];
 
-export const steps: Step[] = [
+export const getSteps = (locale: string): Step[] => [
   {
     element: ".tutorial-2",
     popover: {
-      title: "Application sidebar",
+      title: locale === "en" ? "Application sidebar" : "Barre latérale",
       content:
-        "The sidebar allows you to navigate through the entire application services! Chat, files, your profile... Everything you need to get started!",
+        locale === "en"
+          ? "The sidebar allows you to navigate through the entire application services! Chat, files, your profile... Everything you need to get started!"
+          : "La barre latérale vous permet de naviguer dans l'ensemble des services de l'application ! Chat, fichiers, votre profil... Tout ce dont vous avez besoin pour commencer !",
     },
   },
   {
     element: ".tutorial-1",
     popover: {
-      title: "Your profile",
+      title: locale === "en" ? "Your profile" : "Votre profil",
       content:
-        "This little section is useful if you want to manage your account settings, refill your Kin's thoughts, or switch the current application theme!",
+        locale === "en"
+          ? "This little section is useful if you want to manage your account settings, refill your Kin's thoughts, or switch the current application theme!"
+          : "Cette petite section est utile si vous voulez gérer les paramètres de votre compte, remplir les pensées de votre Kin, ou changer le thème de l'application en cours !",
     },
   },
   {
@@ -87,15 +91,19 @@ export const steps: Step[] = [
     popover: {
       title: "Dashboard",
       content:
-        "This is where all the information you need is centralized, you can : start a new chat with one of your Kins, browse the chat history, create todos, manage your alerts...",
+        locale === "en"
+          ? "This is where all the information you need is centralized, you can : start a new chat with one of your Kins, browse the chat history, create todos, manage your alerts..."
+          : "C'est ici que toutes les informations dont vous avez besoin sont centralisées, vous pouvez : démarrer un nouveau chat avec l'un de vos Kins, parcourir l'historique des chats, créer des todos, gérer vos alertes...",
     },
   },
   {
     element: ".tutorial-4",
     popover: {
-      title: "New chat",
+      title: locale === "en" ? "New chat" : "Nouveau chat",
       content:
-        "Try to click this button, start a new chat with one of your available Kins and ask him anything! Let him do the rest 🤖",
+        locale === "en"
+          ? "Try to click this button, start a new chat with one of your available Kins and ask him anything! Let him do the rest 🤖"
+          : "Essayez de cliquer sur ce bouton, démarrez un nouveau chat avec l'un de vos Kins disponibles et demandez-lui n'importe quoi ! Laissez-le faire le reste 🤖",
     },
   },
 ];
@@ -143,10 +151,10 @@ export const fileSystemData: FileTableData[] = [
   },
 ];
 
-export const fileSystemColumns: ColumnDef<FileTableData>[] = [
+export const getFileSystemColumns = (locale: string): ColumnDef<FileTableData>[] => [
   {
     accessorKey: "filename",
-    header: "File name",
+    header: locale === 'en' ? "File name" : "Nom du fichier",
     cell: ({ row }) => {
       const randomFileType = getRandomFileType(fileType);
       const IconRandomized = randomFileType.icon;
@@ -170,7 +178,7 @@ export const fileSystemColumns: ColumnDef<FileTableData>[] = [
   },
   {
     accessorKey: "uploadedBy",
-    header: "Uploaded by",
+    header: locale === 'en' ? "Uploaded by" : "Téléchargé par",
     cell: ({ row }) => {
       const user = row.getValue("uploadedBy") as User;
       const randomAvatar = getRandomAvatar();
@@ -192,7 +200,7 @@ export const fileSystemColumns: ColumnDef<FileTableData>[] = [
   },
   {
     accessorKey: "lastModified",
-    header: "Last modified",
+    header: locale === 'en' ? "Last modified" : "Modifié",
     cell: ({ row }) => {
       return (
         <div className="font-medium">
@@ -220,12 +228,12 @@ export const fileSystemColumns: ColumnDef<FileTableData>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(data.filename)}
             >
-              Copy file name
+              {locale === 'en' ? "Copy file name" : "Copier nom du fichier"}
             </DropdownMenuItem>
-            <DropdownMenuItem>View file</DropdownMenuItem>
+            <DropdownMenuItem>{locale === 'en' ? "View file" : "Voir le fichier"}</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600">
-              <Trash /> Delete file
+              <Trash /> {locale === 'en' ? "Delete file" : "Supprimer le fichier"}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -273,7 +281,7 @@ export const chatHistoryData: HistoryTableData[] = [
   },
 ];
 
-export const chatHistoryColumns: ColumnDef<HistoryTableData>[] = [
+export const getChatHistoryColumns = (locale: string): ColumnDef<HistoryTableData>[] => [
   {
     accessorKey: "title",
     header: "Chat",
@@ -290,7 +298,7 @@ export const chatHistoryColumns: ColumnDef<HistoryTableData>[] = [
   },
   {
     accessorKey: "lastUser",
-    header: "Last user",
+    header: locale === 'en' ? "Last user" : "Dernier utilisateur",
     cell: ({ row }) => {
       const user = row.getValue("lastUser") as User;
       const randomAvatar = getRandomAvatar();

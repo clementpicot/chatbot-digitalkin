@@ -1,14 +1,18 @@
+"use client";
+
 import AlertWidget from "@/components/layout/alerts-widget";
 import KinWidget from "@/components/layout/kins-widget";
 import TodoWidget from "@/components/layout/todo-widget";
 import { Calendar } from "@/components/ui/calendar";
 import Cell from "@/components/ui/cell";
 import { DataTable } from "@/components/ui/data-table";
-import { chatHistoryColumns, chatHistoryData } from "@/lib/data";
-import { useTranslations } from "next-intl";
+import { getChatHistoryColumns, chatHistoryData } from "@/lib/data";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Page() {
   const t = useTranslations();
+  const locale = useLocale()
+  const chatHistoryColumns = getChatHistoryColumns(locale)
 
   return (
     <div className="grid grid-cols-6 gap-8">

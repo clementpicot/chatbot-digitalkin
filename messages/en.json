@@ -8,7 +8,20 @@
     "calendar": "Calendar",
     "newTask": "Add a new task...",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "thoughts": "thoughts"
+  },
+
+  "login": {
+    "login": "Login",
+    "loginDescription": "Enter your email below to login to your account",
+    "signUp": "Sign up",
+    "signUpDescription": "Create your account by entering your email and password below",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "lostPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "alreadyAccount": "Already have an account?"
   },
 
   "variants": {
@@ -99,6 +112,68 @@
     "description": "{description}",
     "tokens": "{remainingTokens} of {maxTokens} thoughts left",
     "create": "Create a new Kin"
+  },
+
+  "createKin": {
+    "title": "Create a new Kin",
+    "infos": {
+      "title": "Basic Information",
+      "paragraph": "Configure the basic settings for your Kin.",
+      "name": "Kin Name",
+      "namePh": "E.g., Sales Assistant",
+      "nameP": "This is how your Kin will identify itself.",
+      "descriptionPh": "Describe what your Kin does",
+      "descriptionP": "Brief description of your Kin's purpose.",
+      "role": "Role",
+      "rolePh": "Select a role",
+      "roleSelect": {
+        "hr": "Human Resources",
+        "ts": "Technical Support"
+      },
+      "roleP": "The primary role of your Kin."
+    },
+    "settings": {
+      "title": "Advanced Settings",
+      "paragraph": "Fine-tune your Kin's capabilities and behavior.",
+      "model": {
+        "title": "Model settings",
+        "temperature": "Temperature",
+        "temperaturePh": "Select temperature",
+        "temperatureP": "Controls randomness in responses.",
+        "temperatureSelect": {
+          "focused": "Most Focused",
+          "balanced": "Balanced",
+          "creative": "Creative",
+          "most": "Most Creative"
+        },
+        "tokens": "Max thoughts",
+        "tokensPh": "Select max thoughts",
+        "tokensP": "Maximum length of responses."
+      },
+      "capabilities": {
+        "title": "Capabilities",
+        "webTitle": "Web browsing",
+        "webP": "Allow Kin to search and browse the internet.",
+        "codeTitle": "Code Interpreter",
+        "codeP": "Enable code execution capabilities.",
+        "dbTitle": "Database Access",
+        "dbP": "Allow querying and updating databases."
+      },
+      "memory": {
+        "title": "Memory settings",
+        "type": "Memory type",
+        "typeSelect": {
+          "noMem": "No Memory",
+          "conv": "Conversational",
+          "mem": "Long-term Memory"
+        },
+        "typeP": "How your Kin remembers past interactions."
+      }
+    },
+    "test": {
+      "title": "Test your Kin",
+      "paragraph": "Try out your Kin's responses before deploying."
+    }
   },
 
   "fileSystem": {

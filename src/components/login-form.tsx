@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -16,6 +17,9 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+
+  const t = useTranslations()
+
   const handleSubmit = async () => {
     "use server";
 
@@ -33,9 +37,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">{t('login.login')}</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+          {t('login.loginDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -53,12 +57,12 @@ export function LoginForm({
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t('login.password')}</Label>
                   <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
+                    {t('login.lostPassword')}
                   </a>
                 </div>
                 <Input
@@ -69,13 +73,13 @@ export function LoginForm({
                 />
               </div>
               <Button type="submit" className="w-full">
-                Login
+              {t('login.login')}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&ap;t have an account?{" "}
+            {t('login.noAccount')} {" "}
               <Link href="/sign-up" className="underline underline-offset-4">
-                Sign up
+              {t('login.signUp')}
               </Link>
             </div>
           </form>

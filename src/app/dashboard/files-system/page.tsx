@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import Cell from "@/components/ui/cell";
 import { DataTable } from "@/components/ui/data-table";
@@ -9,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { fileSystemColumns, fileSystemData } from "@/lib/data";
+import { getFileSystemColumns, fileSystemData } from "@/lib/data";
 import {
   FileText,
   FolderClosed,
@@ -19,19 +21,21 @@ import {
   Plus,
   Trash
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Page() {
 
   const t = useTranslations();
+  const locale = useLocale()
+  const fileSystemColumns = getFileSystemColumns(locale)
 
   return (
     <Cell>
-      <div className="grid grid-cols-5 gap-12">
+      <div className="grid lg:grid-cols-5 gap-12">
         <div className="col-span-2">
           <h2 className="text-xl font-semibold">{t('fileSystem.add')}</h2>
-          <div className="grid lg:grid-cols-2 gap-4 mt-2">
+          <div className="grid grid-cols-2 gap-4 mt-2">
             <div className="relative flex flex-col border border-border hover:bg-foreground/5 rounded-md p-4">
               <Link href="#">
                 <div className="absolute top-2 right-4">

@@ -8,7 +8,20 @@
     "calendar": "Calendrier",
     "newTask": "Ajouter une nouvelle tâche...",
     "previous": "Précédent",
-    "next": "Suivant"
+    "next": "Suivant",
+    "thoughts": "pensées"
+  },
+
+  "login": {
+    "login": "Se connecter",
+    "loginDescription": "Entrez votre email ci-dessous pour vous connecter à votre compte",
+    "signUp": "S'inscrire",
+    "signUpDescription": "Créez votre compte en saisissant votre adresse électronique et votre mot de passe ci-dessous",
+    "password": "Mot de passe",
+    "repeatPassword": "Répéter le mot de passe",
+    "lostPassword": "Mot de passe oublié",
+    "noAccount": "Pas de compte ?",
+    "alreadyAccount": "Déjà un compte ?"
   },
 
   "variants": {
@@ -99,6 +112,68 @@
     "description": "{description}",
     "tokens": "{remainingTokens} sur {maxTokens} pensées restantes",
     "create": "Créer un nouveau Kin"
+  },
+
+  "createKin": {
+    "title": "Créer un nouveau Kin",
+    "infos": {
+      "title": "Informations de base",
+      "paragraph": "Configurez les paramètres de base de votre Kin",
+      "name": "Kin Name",
+      "namePh": "Ex: Assistant Finance",
+      "nameP": "C'est ainsi que votre Kin s'identifiera.",
+      "descriptionPh": "Décrivez ce que fait votre Kin",
+      "descriptionP": "Brève description de l'objectif de votre Kin",
+      "role": "Rôle",
+      "rolePh": "Sélectionnez un rôle",
+      "roleSelect": {
+        "hr": "Ressources humaines",
+        "ts": "Support technique"
+      },
+      "roleP": "Le rôle principal de votre Kin."
+    },
+    "settings": {
+      "title": "Paramètres avancés",
+      "paragraph": "Affinez les capacités et le comportement de votre Kin",
+      "model": {
+        "title": "Paramètres du modèle",
+        "temperature": "Température",
+        "temperaturePh": "Selectionnez une température",
+        "temperatureP": "Contrôle le caractère aléatoire des réponses",
+        "temperatureSelect": {
+          "focused": "Le plus concentré",
+          "balanced": "Équilibré",
+          "creative": "Créatif",
+          "most": "Le plus créatif"
+        },
+        "tokens": "Pensées maximales",
+        "tokensPh": "Sélectionnez le nombre de pensées maximales",
+        "tokensP": "Longueur maximale des réponses."
+      },
+      "capabilities": {
+        "title": "Capacités",
+        "webTitle": "Navigation sur le web",
+        "webP": "Permettre à Kin de rechercher et de naviguer sur l'internet",
+        "codeTitle": "Interprète de code",
+        "codeP": "Activer les capacités d'exécution de code",
+        "dbTitle": "Accès à la base de données",
+        "dbP": "Permettre l'interrogation et la mise à jour des bases de données."
+      },
+      "memory": {
+        "title": "Paramètres de mémoire",
+        "type": "Type de mémoire",
+        "typeSelect": {
+          "noMem": "Aucune mémoire",
+          "conv": "Conversationnel",
+          "mem": "Mémoire à long terme"
+        },
+        "typeP": "Comment votre Kin se souvient des interactions passées."
+      }
+    },
+    "test": {
+      "title": "Testez votre Kin",
+      "paragraph": "Testez les réponses de votre Kin avant de le déployer."
+    }
   },
 
   "fileSystem": {
