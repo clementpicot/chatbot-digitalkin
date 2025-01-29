@@ -116,7 +116,7 @@ export default function ChatbotInput({
             <Badge
               key={badge}
               variant="default"
-              className="cursor-pointer"
+              className="cursor-pointer text-center"
               onClick={() => addMessage(badge)}
             >
               {t('kins.chat.badge', {badge: badge})}

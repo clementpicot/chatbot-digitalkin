@@ -9,7 +9,7 @@ export default function Cell({
   className?: string;
 }) {
   return (
-    <div className={cn("p-8 rounded-xl bg-muted/50", className)}>
+    <div className={cn("p-4 md:p-8 rounded-xl bg-muted/50", className)}>
       {children}
     </div>
   );
